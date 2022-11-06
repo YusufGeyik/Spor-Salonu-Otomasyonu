@@ -54,6 +54,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button7 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.X = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -345,11 +346,22 @@
             this.textBox1.TabIndex = 67;
             this.textBox1.Text = "X";
             // 
+            // X
+            // 
+            this.X.AutoSize = true;
+            this.X.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.X.Location = new System.Drawing.Point(948, 12);
+            this.X.Name = "X";
+            this.X.Size = new System.Drawing.Size(16, 20);
+            this.X.TabIndex = 68;
+            this.X.Text = "X";
+            // 
             // Güncelle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1012, 502);
+            this.Controls.Add(this.X);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.dataGridView1);
@@ -413,5 +425,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label X;
     }
 }
