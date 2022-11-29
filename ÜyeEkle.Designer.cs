@@ -54,6 +54,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.Geri = new System.Windows.Forms.Button();
             this.X = new System.Windows.Forms.Label();
+            this.CafeBakiye = new System.Windows.Forms.Label();
+            this.textbxCafe = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.picbxYeni)).BeginInit();
             this.SuspendLayout();
             // 
@@ -220,6 +222,7 @@
             // 
             // comboxCins
             // 
+            this.comboxCins.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboxCins.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.comboxCins.FormattingEnabled = true;
             this.comboxCins.Items.AddRange(new object[] {
@@ -229,6 +232,7 @@
             this.comboxCins.Name = "comboxCins";
             this.comboxCins.Size = new System.Drawing.Size(118, 28);
             this.comboxCins.TabIndex = 31;
+            this.comboxCins.SelectedIndexChanged += new System.EventHandler(this.comboxCins_SelectedIndexChanged);
             // 
             // labelAcıklama
             // 
@@ -245,6 +249,8 @@
             // 
             // comboxPeriyot
             // 
+            this.comboxPeriyot.Cursor = System.Windows.Forms.Cursors.Default;
+            this.comboxPeriyot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboxPeriyot.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.comboxPeriyot.FormattingEnabled = true;
             this.comboxPeriyot.Items.AddRange(new object[] {
@@ -256,12 +262,14 @@
             this.comboxPeriyot.Name = "comboxPeriyot";
             this.comboxPeriyot.Size = new System.Drawing.Size(118, 28);
             this.comboxPeriyot.TabIndex = 33;
+            this.comboxPeriyot.SelectedIndexChanged += new System.EventHandler(this.comboxPeriyot_SelectedIndexChanged);
             // 
             // textbxBakiye
             // 
             this.textbxBakiye.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textbxBakiye.Location = new System.Drawing.Point(693, 253);
+            this.textbxBakiye.Location = new System.Drawing.Point(693, 276);
             this.textbxBakiye.Name = "textbxBakiye";
+            this.textbxBakiye.ReadOnly = true;
             this.textbxBakiye.Size = new System.Drawing.Size(118, 27);
             this.textbxBakiye.TabIndex = 34;
             // 
@@ -270,7 +278,7 @@
             this.labelTutar.AutoSize = true;
             this.labelTutar.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.labelTutar.ForeColor = System.Drawing.Color.Black;
-            this.labelTutar.Location = new System.Drawing.Point(725, 227);
+            this.labelTutar.Location = new System.Drawing.Point(725, 253);
             this.labelTutar.Name = "labelTutar";
             this.labelTutar.Size = new System.Drawing.Size(43, 20);
             this.labelTutar.TabIndex = 35;
@@ -282,7 +290,6 @@
             this.listbxBrans.Items.AddRange(new object[] {
             "Fitness",
             "Wellness",
-            "Vücut Geliştirme",
             "Kickbox/Muaythai",
             "Boks",
             "Güreş",
@@ -357,12 +364,33 @@
             this.X.Text = "X";
             this.X.Click += new System.EventHandler(this.X_Click);
             // 
+            // CafeBakiye
+            // 
+            this.CafeBakiye.AutoSize = true;
+            this.CafeBakiye.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.CafeBakiye.ForeColor = System.Drawing.Color.Black;
+            this.CafeBakiye.Location = new System.Drawing.Point(702, 200);
+            this.CafeBakiye.Name = "CafeBakiye";
+            this.CafeBakiye.Size = new System.Drawing.Size(98, 20);
+            this.CafeBakiye.TabIndex = 43;
+            this.CafeBakiye.Text = "Cafe Bakiyesi";
+            // 
+            // textbxCafe
+            // 
+            this.textbxCafe.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.textbxCafe.Location = new System.Drawing.Point(693, 223);
+            this.textbxCafe.Name = "textbxCafe";
+            this.textbxCafe.Size = new System.Drawing.Size(118, 27);
+            this.textbxCafe.TabIndex = 42;
+            // 
             // ÜyeEkle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(1009, 420);
+            this.Controls.Add(this.CafeBakiye);
+            this.Controls.Add(this.textbxCafe);
             this.Controls.Add(this.X);
             this.Controls.Add(this.Geri);
             this.Controls.Add(this.button2);
@@ -416,7 +444,6 @@
         private System.Windows.Forms.Label labelPeriyot;
         private System.Windows.Forms.ComboBox comboxCins;
         private System.Windows.Forms.Label labelAcıklama;
-        private System.Windows.Forms.ComboBox comboxPeriyot;
         private System.Windows.Forms.TextBox textbxBakiye;
         private System.Windows.Forms.Label labelTutar;
         private System.Windows.Forms.CheckedListBox listbxBrans;
@@ -425,5 +452,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button Geri;
         private System.Windows.Forms.Label X;
+        private System.Windows.Forms.Label CafeBakiye;
+        private System.Windows.Forms.TextBox textbxCafe;
+        private System.Windows.Forms.ComboBox comboxPeriyot;
     }
 }

@@ -38,6 +38,7 @@ namespace proje
             this.BtGiris = new System.Windows.Forms.Button();
             this.btSıfırla = new System.Windows.Forms.Button();
             this.picbxGiris = new System.Windows.Forms.PictureBox();
+            this.X = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picbxuser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picbxPw)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picbxGiris)).BeginInit();
@@ -136,12 +137,24 @@ namespace proje
             this.picbxGiris.TabIndex = 0;
             this.picbxGiris.TabStop = false;
             // 
+            // X
+            // 
+            this.X.AutoSize = true;
+            this.X.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.X.Location = new System.Drawing.Point(772, 9);
+            this.X.Name = "X";
+            this.X.Size = new System.Drawing.Size(16, 20);
+            this.X.TabIndex = 42;
+            this.X.Text = "X";
+            this.X.Click += new System.EventHandler(this.X_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(800, 472);
+            this.Controls.Add(this.X);
             this.Controls.Add(this.picbxuser);
             this.Controls.Add(this.btSıfırla);
             this.Controls.Add(this.BtGiris);
@@ -172,6 +185,7 @@ namespace proje
         private System.Windows.Forms.Button BtGiris;
         private System.Windows.Forms.Button btSıfırla;
         private System.Windows.Forms.PictureBox picbxGiris;
+        private Label X;
     }
 }
 

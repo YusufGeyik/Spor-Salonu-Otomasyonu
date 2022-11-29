@@ -31,5 +31,19 @@ namespace proje
         {
 
         }
+
+        private void Geri_Click(object sender, EventArgs e)
+        {
+            AnaSayfa anasayfa= new AnaSayfa();
+            anasayfa.Show();    
+            this.Hide();    
+        }
+
+        private void X_Click(object sender, EventArgs e)
+        {
+            AnaSayfa anasayfa = new AnaSayfa();
+            anasayfa.Show();
+            this.Hide();
+        }
     }
 }

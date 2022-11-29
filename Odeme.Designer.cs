@@ -128,6 +128,7 @@
             this.Geri.TabIndex = 79;
             this.Geri.Text = "Geri Dön";
             this.Geri.UseVisualStyleBackColor = false;
+            this.Geri.Click += new System.EventHandler(this.Geri_Click);
             // 
             // button2
             // 
@@ -171,6 +172,7 @@
             this.X.Size = new System.Drawing.Size(16, 20);
             this.X.TabIndex = 81;
             this.X.Text = "X";
+            this.X.Click += new System.EventHandler(this.X_Click);
             // 
             // Odeme
             // 

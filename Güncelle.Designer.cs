@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Güncelle));
             this.Geri = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btReset = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.labelBrans = new System.Windows.Forms.Label();
-            this.listbxBrans = new System.Windows.Forms.CheckedListBox();
-            this.labelTutar = new System.Windows.Forms.Label();
-            this.textbxTutar = new System.Windows.Forms.TextBox();
+            this.listbxBrans1 = new System.Windows.Forms.CheckedListBox();
+            this.labelBakiye = new System.Windows.Forms.Label();
+            this.textbxBakiye = new System.Windows.Forms.TextBox();
             this.comboxPeriyot = new System.Windows.Forms.ComboBox();
             this.labelAcıklama = new System.Windows.Forms.Label();
             this.comboxCins = new System.Windows.Forms.ComboBox();
@@ -51,11 +51,12 @@
             this.radiobtGold = new System.Windows.Forms.RadioButton();
             this.radiobtPlat = new System.Windows.Forms.RadioButton();
             this.labelPaket = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.UYEDGV = new System.Windows.Forms.DataGridView();
             this.button7 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.X = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.btGunc = new System.Windows.Forms.Button();
+            this.btSil = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.UYEDGV)).BeginInit();
             this.SuspendLayout();
             // 
             // Geri
@@ -63,24 +64,26 @@
             this.Geri.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Geri.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.Geri.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.Geri.Location = new System.Drawing.Point(838, 474);
+            this.Geri.Location = new System.Drawing.Point(877, 474);
             this.Geri.Name = "Geri";
             this.Geri.Size = new System.Drawing.Size(75, 30);
             this.Geri.TabIndex = 64;
             this.Geri.Text = "Geri Dön";
             this.Geri.UseVisualStyleBackColor = false;
+            this.Geri.Click += new System.EventHandler(this.Geri_Click);
             // 
-            // button2
+            // btReset
             // 
-            this.button2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button2.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button2.Location = new System.Drawing.Point(693, 474);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 30);
-            this.button2.TabIndex = 63;
-            this.button2.Text = "Reset";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btReset.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btReset.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btReset.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btReset.Location = new System.Drawing.Point(796, 474);
+            this.btReset.Name = "btReset";
+            this.btReset.Size = new System.Drawing.Size(75, 30);
+            this.btReset.TabIndex = 63;
+            this.btReset.Text = "Reset";
+            this.btReset.UseVisualStyleBackColor = false;
+            this.btReset.Click += new System.EventHandler(this.btReset_Click);
             // 
             // button1
             // 
@@ -91,8 +94,9 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 30);
             this.button1.TabIndex = 62;
-            this.button1.Text = "Kaydet";
+            this.button1.Text = "Seç";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // labelBrans
             // 
@@ -105,13 +109,12 @@
             this.labelBrans.TabIndex = 61;
             this.labelBrans.Text = "Branş";
             // 
-            // listbxBrans
+            // listbxBrans1
             // 
-            this.listbxBrans.FormattingEnabled = true;
-            this.listbxBrans.Items.AddRange(new object[] {
+            this.listbxBrans1.FormattingEnabled = true;
+            this.listbxBrans1.Items.AddRange(new object[] {
             "Fitness",
             "Wellness",
-            "Vücut Geliştirme",
             "Kickbox/Muaythai",
             "Boks",
             "Güreş",
@@ -119,39 +122,40 @@
             "Yüzme",
             "Zumba",
             "Pilates"});
-            this.listbxBrans.Location = new System.Drawing.Point(838, 233);
-            this.listbxBrans.Name = "listbxBrans";
-            this.listbxBrans.Size = new System.Drawing.Size(116, 154);
-            this.listbxBrans.TabIndex = 60;
+            this.listbxBrans1.Location = new System.Drawing.Point(838, 233);
+            this.listbxBrans1.Name = "listbxBrans1";
+            this.listbxBrans1.Size = new System.Drawing.Size(116, 154);
+            this.listbxBrans1.TabIndex = 60;
             // 
-            // labelTutar
+            // labelBakiye
             // 
-            this.labelTutar.AutoSize = true;
-            this.labelTutar.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.labelTutar.ForeColor = System.Drawing.Color.Black;
-            this.labelTutar.Location = new System.Drawing.Point(725, 311);
-            this.labelTutar.Name = "labelTutar";
-            this.labelTutar.Size = new System.Drawing.Size(43, 20);
-            this.labelTutar.TabIndex = 59;
-            this.labelTutar.Text = "Tutar";
+            this.labelBakiye.AutoSize = true;
+            this.labelBakiye.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.labelBakiye.ForeColor = System.Drawing.Color.Black;
+            this.labelBakiye.Location = new System.Drawing.Point(689, 288);
+            this.labelBakiye.Name = "labelBakiye";
+            this.labelBakiye.Size = new System.Drawing.Size(98, 20);
+            this.labelBakiye.TabIndex = 59;
+            this.labelBakiye.Text = "Cafe Bakiyesi";
             // 
-            // textbxTutar
+            // textbxBakiye
             // 
-            this.textbxTutar.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textbxTutar.Location = new System.Drawing.Point(693, 337);
-            this.textbxTutar.Name = "textbxTutar";
-            this.textbxTutar.Size = new System.Drawing.Size(118, 27);
-            this.textbxTutar.TabIndex = 58;
+            this.textbxBakiye.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.textbxBakiye.Location = new System.Drawing.Point(693, 311);
+            this.textbxBakiye.Name = "textbxBakiye";
+            this.textbxBakiye.Size = new System.Drawing.Size(118, 27);
+            this.textbxBakiye.TabIndex = 58;
             // 
             // comboxPeriyot
             // 
+            this.comboxPeriyot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboxPeriyot.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.comboxPeriyot.FormattingEnabled = true;
             this.comboxPeriyot.Items.AddRange(new object[] {
-            "1 Ay",
-            "3 Ay",
-            "6 Ay",
-            "12 Ay"});
+            "30",
+            "90",
+            "180",
+            "360"});
             this.comboxPeriyot.Location = new System.Drawing.Point(693, 243);
             this.comboxPeriyot.Name = "comboxPeriyot";
             this.comboxPeriyot.Size = new System.Drawing.Size(118, 28);
@@ -171,6 +175,7 @@
             // 
             // comboxCins
             // 
+            this.comboxCins.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboxCins.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.comboxCins.FormattingEnabled = true;
             this.comboxCins.Items.AddRange(new object[] {
@@ -312,14 +317,17 @@
             this.labelPaket.TabIndex = 44;
             this.labelPaket.Text = "Üyelik Paketi";
             // 
-            // dataGridView1
+            // UYEDGV
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 150);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(544, 350);
-            this.dataGridView1.TabIndex = 65;
+            this.UYEDGV.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.UYEDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.UYEDGV.Location = new System.Drawing.Point(0, 150);
+            this.UYEDGV.Name = "UYEDGV";
+            this.UYEDGV.ReadOnly = true;
+            this.UYEDGV.RowTemplate.Height = 25;
+            this.UYEDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.UYEDGV.Size = new System.Drawing.Size(544, 350);
+            this.UYEDGV.TabIndex = 65;
             // 
             // button7
             // 
@@ -336,42 +344,60 @@
             this.button7.UseVisualStyleBackColor = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textBox1.Location = new System.Drawing.Point(981, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ShortcutsEnabled = false;
-            this.textBox1.Size = new System.Drawing.Size(19, 27);
-            this.textBox1.TabIndex = 67;
-            this.textBox1.Text = "X";
-            // 
             // X
             // 
             this.X.AutoSize = true;
             this.X.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.X.Location = new System.Drawing.Point(948, 12);
+            this.X.Location = new System.Drawing.Point(984, 9);
             this.X.Name = "X";
             this.X.Size = new System.Drawing.Size(16, 20);
             this.X.TabIndex = 68;
             this.X.Text = "X";
+            this.X.Click += new System.EventHandler(this.X_Click_1);
+            // 
+            // btGunc
+            // 
+            this.btGunc.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btGunc.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btGunc.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btGunc.Location = new System.Drawing.Point(634, 474);
+            this.btGunc.Name = "btGunc";
+            this.btGunc.Size = new System.Drawing.Size(75, 30);
+            this.btGunc.TabIndex = 69;
+            this.btGunc.Text = "Güncelle";
+            this.btGunc.UseVisualStyleBackColor = false;
+            this.btGunc.Click += new System.EventHandler(this.btGunc_Click);
+            // 
+            // btSil
+            // 
+            this.btSil.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btSil.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btSil.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btSil.Location = new System.Drawing.Point(715, 474);
+            this.btSil.Name = "btSil";
+            this.btSil.Size = new System.Drawing.Size(75, 30);
+            this.btSil.TabIndex = 70;
+            this.btSil.Text = "Sil";
+            this.btSil.UseVisualStyleBackColor = false;
+            this.btSil.Click += new System.EventHandler(this.btSil_Click);
             // 
             // Güncelle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1012, 502);
+            this.Controls.Add(this.btSil);
+            this.Controls.Add(this.btGunc);
             this.Controls.Add(this.X);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button7);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.UYEDGV);
             this.Controls.Add(this.Geri);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btReset);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.labelBrans);
-            this.Controls.Add(this.listbxBrans);
-            this.Controls.Add(this.labelTutar);
-            this.Controls.Add(this.textbxTutar);
+            this.Controls.Add(this.listbxBrans1);
+            this.Controls.Add(this.labelBakiye);
+            this.Controls.Add(this.textbxBakiye);
             this.Controls.Add(this.comboxPeriyot);
             this.Controls.Add(this.labelAcıklama);
             this.Controls.Add(this.comboxCins);
@@ -392,7 +418,8 @@
             this.Name = "Güncelle";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Güncelle";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.Güncelle_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.UYEDGV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -401,12 +428,12 @@
         #endregion
 
         private System.Windows.Forms.Button Geri;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btReset;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label labelBrans;
-        private System.Windows.Forms.CheckedListBox listbxBrans;
-        private System.Windows.Forms.Label labelTutar;
-        private System.Windows.Forms.TextBox textbxTutar;
+        private System.Windows.Forms.CheckedListBox listbxBrans1;
+        private System.Windows.Forms.Label labelBakiye;
+        private System.Windows.Forms.TextBox textbxBakiye;
         private System.Windows.Forms.ComboBox comboxPeriyot;
         private System.Windows.Forms.Label labelAcıklama;
         private System.Windows.Forms.ComboBox comboxCins;
@@ -422,9 +449,10 @@
         private System.Windows.Forms.RadioButton radiobtGold;
         private System.Windows.Forms.RadioButton radiobtPlat;
         private System.Windows.Forms.Label labelPaket;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView UYEDGV;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label X;
+        private System.Windows.Forms.Button btGunc;
+        private System.Windows.Forms.Button btSil;
     }
 }

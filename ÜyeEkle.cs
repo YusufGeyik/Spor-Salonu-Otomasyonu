@@ -10,8 +10,11 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Diagnostics.Eventing.Reader;
 
+
+
 namespace proje
 {
+    
     public partial class ÜyeEkle : Form
     {
 
@@ -109,13 +112,12 @@ namespace proje
 
         }
 
-        private void picbxYeni_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void button1_Click(object sender, EventArgs e)
         {
+            int isInt;
+            char isChar;
             string Branslar = "";
             string UyelikPaketi = "";
             for (int i = 0; i < listbxBrans.Items.Count; i++)
@@ -123,29 +125,45 @@ namespace proje
                 if (listbxBrans.GetItemChecked(i) == true)
                 {
 
-                   Branslar=listbxBrans.Items[i].ToString() +" " +Branslar;
+                   Branslar=listbxBrans.Items[i].ToString() + "," +Branslar;
 
                 }
 
             }
-
-
-
-            if (radiobtPlat.Checked == true)
-                UyelikPaketi = radiobtPlat.Text;
-            else if (radiobtGold.Checked == true)
-                UyelikPaketi = radiobtGold.Text;
-            else if (radiobtBronze.Checked == true)
-                UyelikPaketi = radiobtBronze.Text;
-               
             
-            if (textbxAd.Text == "" || textbxTel.Text == "" || textbxBakiye.Text == "" || textbxYas.Text == "")
+
+            bool uyelikcheck = false;
+            if (radiobtPlat.Checked == true)
+            {
+                UyelikPaketi = radiobtPlat.Text;
+                uyelikcheck = true;
+            }
+
+            else if (radiobtGold.Checked == true)
+            {
+                UyelikPaketi = radiobtGold.Text;
+                uyelikcheck=true;
+            }
+            else if (radiobtBronze.Checked == true)
+            {
+                UyelikPaketi = radiobtBronze.Text;
+                uyelikcheck=!true;
+            }
+            
+            if (comboxPeriyot.Text=="" || textbxAd.Text == "" || textbxTel.Text == "" || textbxCafe.Text == "" || textbxYas.Text == "" || uyelikcheck==false || Branslar=="" || comboxCins.Text=="")
             {
 
                 MessageBox.Show("Eksik alan bırakmayınız");
 
 
             }
+            
+            else if(char.TryParse(textbxAd.Text, out isChar) & int.TryParse(textbxTel.)   )
+            
+            
+            
+            
+            
             else
             {
 
@@ -153,7 +171,7 @@ namespace proje
                 {
 
                     baglanti.Open();
-                    string query = "insert into UyeTbl (UyeAdSoyad,UyeTelefonNo,UyeCinsiyet,UyeYas,UyeBakiye,UyeBranslar,UyePeriyot,UyelikPaketi) values ('" + textbxAd.Text + "','" + textbxTel.Text + "','" + comboxCins.SelectedItem.ToString() + "','" + textbxYas.Text + "','"+textbxBakiye.Text+"','"+Branslar+"','"+comboxPeriyot.SelectedItem+"','"+UyelikPaketi+"')";
+                    string query = "insert into UyeTbl (UyeAdSoyad,UyeTelefonNo,UyeCinsiyet,UyeYas,UyeBakiye,UyeBranslar,UyePeriyot,UyelikPaketi) values ('" + textbxAd.Text + "','" + textbxTel.Text + "','" + comboxCins.SelectedItem.ToString() + "','" + textbxYas.Text + "','"+textbxCafe.Text+"','"+Branslar+"','"+comboxPeriyot.SelectedItem+"','"+UyelikPaketi+"')";
                     SqlCommand komut= new SqlCommand(query,baglanti);
                     komut.ExecuteNonQuery();
                     MessageBox.Show("Üye Kaydı Tamamlandı");
@@ -179,10 +197,10 @@ namespace proje
                     }
                     baglanti.Close();
 
-                }catch(Exception Ex)
+                }catch(Exception Error)
                 {
 
-                    MessageBox.Show("Ex.Message");
+                    MessageBox.Show("Error.Message");
 
 
                 }
@@ -211,17 +229,32 @@ namespace proje
         }
         private void X_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            AnaSayfa anasayfa = new AnaSayfa();
+            anasayfa.Show();
+            this.Hide();
         }
 
 
         private void Geri_Click(object sender, EventArgs e)
         {
-            Form1 log = new Form1();
-            log.Show();
+            AnaSayfa anasayfa = new AnaSayfa();
+            anasayfa.Show();
             this.Hide();
         }
 
-       
+        private void picbxYeni_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboxPeriyot_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void comboxCins_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
