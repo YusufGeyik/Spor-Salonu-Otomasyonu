@@ -35,7 +35,7 @@
             this.labelBrans = new System.Windows.Forms.Label();
             this.listbxBrans1 = new System.Windows.Forms.CheckedListBox();
             this.labelBakiye = new System.Windows.Forms.Label();
-            this.textbxBakiye = new System.Windows.Forms.TextBox();
+            this.textbxCafe = new System.Windows.Forms.TextBox();
             this.comboxPeriyot = new System.Windows.Forms.ComboBox();
             this.labelAcıklama = new System.Windows.Forms.Label();
             this.comboxCins = new System.Windows.Forms.ComboBox();
@@ -56,7 +56,12 @@
             this.X = new System.Windows.Forms.Label();
             this.btGunc = new System.Windows.Forms.Button();
             this.btSil = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btara = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.username = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.UYEDGV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // Geri
@@ -138,13 +143,14 @@
             this.labelBakiye.TabIndex = 59;
             this.labelBakiye.Text = "Cafe Bakiyesi";
             // 
-            // textbxBakiye
+            // textbxCafe
             // 
-            this.textbxBakiye.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textbxBakiye.Location = new System.Drawing.Point(693, 311);
-            this.textbxBakiye.Name = "textbxBakiye";
-            this.textbxBakiye.Size = new System.Drawing.Size(118, 27);
-            this.textbxBakiye.TabIndex = 58;
+            this.textbxCafe.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.textbxCafe.Location = new System.Drawing.Point(693, 311);
+            this.textbxCafe.Name = "textbxCafe";
+            this.textbxCafe.Size = new System.Drawing.Size(118, 27);
+            this.textbxCafe.TabIndex = 58;
+            this.textbxCafe.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textbxBakiye_KeyPress);
             // 
             // comboxPeriyot
             // 
@@ -226,6 +232,7 @@
             this.textbxYas.Name = "textbxYas";
             this.textbxYas.Size = new System.Drawing.Size(116, 31);
             this.textbxYas.TabIndex = 51;
+            this.textbxYas.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textbxYas_KeyPress);
             // 
             // textbxTel
             // 
@@ -234,6 +241,7 @@
             this.textbxTel.Name = "textbxTel";
             this.textbxTel.Size = new System.Drawing.Size(118, 27);
             this.textbxTel.TabIndex = 50;
+            this.textbxTel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textbxTel_KeyPress);
             // 
             // labelTel
             // 
@@ -253,6 +261,7 @@
             this.textbxAd.Name = "textbxAd";
             this.textbxAd.Size = new System.Drawing.Size(118, 27);
             this.textbxAd.TabIndex = 48;
+            this.textbxAd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textbxAd_KeyPress);
             // 
             // labelAd
             // 
@@ -322,6 +331,7 @@
             this.UYEDGV.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.UYEDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.UYEDGV.Location = new System.Drawing.Point(0, 150);
+            this.UYEDGV.MultiSelect = false;
             this.UYEDGV.Name = "UYEDGV";
             this.UYEDGV.ReadOnly = true;
             this.UYEDGV.RowTemplate.Height = 25;
@@ -342,7 +352,6 @@
             this.button7.Text = "Üye Güncelleme Ve Silme";
             this.button7.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button7.UseVisualStyleBackColor = false;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // X
             // 
@@ -381,11 +390,57 @@
             this.btSil.UseVisualStyleBackColor = false;
             this.btSil.Click += new System.EventHandler(this.btSil_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.textBox1.Location = new System.Drawing.Point(138, 117);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(150, 27);
+            this.textBox1.TabIndex = 71;
+            this.textBox1.Text = "AD SOYAD";
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            // 
+            // btara
+            // 
+            this.btara.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btara.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btara.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btara.Location = new System.Drawing.Point(294, 114);
+            this.btara.Name = "btara";
+            this.btara.Size = new System.Drawing.Size(75, 30);
+            this.btara.TabIndex = 72;
+            this.btara.Text = "Ara";
+            this.btara.UseVisualStyleBackColor = false;
+            this.btara.Click += new System.EventHandler(this.btara_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(8, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(25, 19);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 73;
+            this.pictureBox1.TabStop = false;
+            // 
+            // username
+            // 
+            this.username.Enabled = false;
+            this.username.Location = new System.Drawing.Point(39, 12);
+            this.username.Name = "username";
+            this.username.ReadOnly = true;
+            this.username.Size = new System.Drawing.Size(100, 20);
+            this.username.TabIndex = 74;
+            // 
             // Güncelle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1012, 502);
+            this.Controls.Add(this.username);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.btara);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btSil);
             this.Controls.Add(this.btGunc);
             this.Controls.Add(this.X);
@@ -397,7 +452,7 @@
             this.Controls.Add(this.labelBrans);
             this.Controls.Add(this.listbxBrans1);
             this.Controls.Add(this.labelBakiye);
-            this.Controls.Add(this.textbxBakiye);
+            this.Controls.Add(this.textbxCafe);
             this.Controls.Add(this.comboxPeriyot);
             this.Controls.Add(this.labelAcıklama);
             this.Controls.Add(this.comboxCins);
@@ -420,6 +475,7 @@
             this.Text = "Güncelle";
             this.Load += new System.EventHandler(this.Güncelle_Load);
             ((System.ComponentModel.ISupportInitialize)(this.UYEDGV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -433,7 +489,7 @@
         private System.Windows.Forms.Label labelBrans;
         private System.Windows.Forms.CheckedListBox listbxBrans1;
         private System.Windows.Forms.Label labelBakiye;
-        private System.Windows.Forms.TextBox textbxBakiye;
+        private System.Windows.Forms.TextBox textbxCafe;
         private System.Windows.Forms.ComboBox comboxPeriyot;
         private System.Windows.Forms.Label labelAcıklama;
         private System.Windows.Forms.ComboBox comboxCins;
@@ -454,5 +510,9 @@
         private System.Windows.Forms.Label X;
         private System.Windows.Forms.Button btGunc;
         private System.Windows.Forms.Button btSil;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btara;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox username;
     }
 }

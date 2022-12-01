@@ -12,38 +12,41 @@ namespace proje
 {
     public partial class Odeme : Form
     {
-        public Odeme()
+        public Odeme(string username)
         {
             InitializeComponent();
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
+            this.username.Text = username;
 
         }
 
         private void Geri_Click(object sender, EventArgs e)
         {
-            AnaSayfa anasayfa= new AnaSayfa();
-            anasayfa.Show();    
-            this.Hide();    
+            AnaSayfa anasayfa = new AnaSayfa(username.Text);
+            anasayfa.Show();
+            this.Hide();
+
+
         }
 
         private void X_Click(object sender, EventArgs e)
         {
-            AnaSayfa anasayfa = new AnaSayfa();
+
+            AnaSayfa anasayfa = new AnaSayfa(username.Text);
             anasayfa.Show();
             this.Hide();
+
+
+
+        }
+
+        private void Odeme_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

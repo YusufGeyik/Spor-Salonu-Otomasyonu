@@ -54,7 +54,7 @@ namespace proje
             this.textboxpw.Name = "textboxpw";
             this.textboxpw.PasswordChar = '*';
             this.textboxpw.Size = new System.Drawing.Size(130, 20);
-            this.textboxpw.TabIndex = 1;
+            this.textboxpw.TabIndex = 2;
             this.textboxpw.Text = "Şifre";
             this.textboxpw.UseWaitCursor = true;
             // 
@@ -68,9 +68,8 @@ namespace proje
             this.textboxKadi.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.textboxKadi.Name = "textboxKadi";
             this.textboxKadi.Size = new System.Drawing.Size(130, 20);
-            this.textboxKadi.TabIndex = 2;
+            this.textboxKadi.TabIndex = 1;
             this.textboxKadi.Text = "Kullanıcı Adı";
-            this.textboxKadi.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // picbxuser
             // 
@@ -83,7 +82,6 @@ namespace proje
             this.picbxuser.Size = new System.Drawing.Size(30, 20);
             this.picbxuser.TabIndex = 3;
             this.picbxuser.TabStop = false;
-            this.picbxuser.Click += new System.EventHandler(this.pictureBox1_Click_1);
             // 
             // picbxPw
             // 
@@ -95,7 +93,6 @@ namespace proje
             this.picbxPw.Size = new System.Drawing.Size(30, 20);
             this.picbxPw.TabIndex = 4;
             this.picbxPw.TabStop = false;
-            this.picbxPw.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // BtGiris
             // 
@@ -107,9 +104,10 @@ namespace proje
             this.BtGiris.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.BtGiris.Name = "BtGiris";
             this.BtGiris.Size = new System.Drawing.Size(74, 32);
-            this.BtGiris.TabIndex = 5;
+            this.BtGiris.TabIndex = 3;
             this.BtGiris.Text = "Giriş Yap";
             this.BtGiris.UseVisualStyleBackColor = false;
+            this.BtGiris.Click += new System.EventHandler(this.BtGiris_Click);
             // 
             // btSıfırla
             // 
@@ -121,10 +119,10 @@ namespace proje
             this.btSıfırla.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btSıfırla.Name = "btSıfırla";
             this.btSıfırla.Size = new System.Drawing.Size(74, 32);
-            this.btSıfırla.TabIndex = 6;
+            this.btSıfırla.TabIndex = 4;
             this.btSıfırla.Text = "Sıfırla";
             this.btSıfırla.UseVisualStyleBackColor = false;
-            this.btSıfırla.Click += new System.EventHandler(this.button2_Click);
+            this.btSıfırla.Click += new System.EventHandler(this.btSıfırla_Click);
             // 
             // picbxGiris
             // 

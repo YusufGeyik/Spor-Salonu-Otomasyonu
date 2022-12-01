@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Odeme));
             this.button7 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.textbxTel = new System.Windows.Forms.TextBox();
@@ -40,7 +41,10 @@
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.X = new System.Windows.Forms.Label();
+            this.username = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // button7
@@ -56,7 +60,6 @@
             this.button7.Text = "Ödeme";
             this.button7.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button7.UseVisualStyleBackColor = false;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // dateTimePicker1
             // 
@@ -65,7 +68,6 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(298, 29);
             this.dateTimePicker1.TabIndex = 69;
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // textbxTel
             // 
@@ -115,7 +117,6 @@
             this.label1.Size = new System.Drawing.Size(75, 20);
             this.label1.TabIndex = 75;
             this.label1.Text = "Ödeme Ayı";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // Geri
             // 
@@ -153,6 +154,7 @@
             this.button1.TabIndex = 77;
             this.button1.Text = "Kaydet";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // dataGridView1
             // 
@@ -174,11 +176,32 @@
             this.X.Text = "X";
             this.X.Click += new System.EventHandler(this.X_Click);
             // 
+            // username
+            // 
+            this.username.Enabled = false;
+            this.username.Location = new System.Drawing.Point(42, 12);
+            this.username.Name = "username";
+            this.username.ReadOnly = true;
+            this.username.Size = new System.Drawing.Size(100, 20);
+            this.username.TabIndex = 83;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(11, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(25, 19);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 82;
+            this.pictureBox1.TabStop = false;
+            // 
             // Odeme
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(994, 435);
+            this.Controls.Add(this.username);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.X);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.Geri);
@@ -195,7 +218,9 @@
             this.Name = "Odeme";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Odeme";
+            this.Load += new System.EventHandler(this.Odeme_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -215,5 +240,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label X;
+        private System.Windows.Forms.TextBox username;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

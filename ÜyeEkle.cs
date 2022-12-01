@@ -9,18 +9,20 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Diagnostics.Eventing.Reader;
-
-
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace proje
 {
     
     public partial class ÜyeEkle : Form
     {
-
-        public ÜyeEkle()
+       
+       
+        public ÜyeEkle(string username)
         {
             InitializeComponent();
+            this.username.Text = username;
+
         }
         SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\YUSUF\DOCUMENTS\DATABASESALON.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
@@ -28,7 +30,7 @@ namespace proje
            
         private void maskedTextBox2_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
-
+            
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -86,10 +88,11 @@ namespace proje
 
         }
 
+
         private void button2_Click(object sender, EventArgs e)
         {
             textbxAd.Text = "";
-            textbxBakiye.Text = "";
+            textbxCafe.Text = "";
             textbxTel.Text = "";
             textbxYas.Text = "";
             comboxCins.Text = "";
@@ -116,8 +119,10 @@ namespace proje
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int isInt;
-            char isChar;
+         
+            int Bakiye;
+            int tutar;
+            int uyelikfiyat = 0;
             string Branslar = "";
             string UyelikPaketi = "";
             for (int i = 0; i < listbxBrans.Items.Count; i++)
@@ -130,26 +135,35 @@ namespace proje
                 }
 
             }
-            
-
+            string BitisTarihi = (dateTimePicker1.Value.AddDays(Int64.Parse(comboxPeriyot.Text)).ToString());
+            string AlarmBaslamaTarihi= (dateTimePicker1.Value.AddDays(Int64.Parse(comboxPeriyot.Text)).ToString());
+            string BaslangicTarihi = dateTimePicker1.Value.ToString();
+           
+        
             bool uyelikcheck = false;
             if (radiobtPlat.Checked == true)
             {
                 UyelikPaketi = radiobtPlat.Text;
                 uyelikcheck = true;
+                uyelikfiyat = 1000;
+                    
             }
 
             else if (radiobtGold.Checked == true)
             {
                 UyelikPaketi = radiobtGold.Text;
                 uyelikcheck=true;
+                uyelikfiyat = 500;
             }
             else if (radiobtBronze.Checked == true)
             {
                 UyelikPaketi = radiobtBronze.Text;
                 uyelikcheck=!true;
+                uyelikfiyat = 250;
             }
             
+           
+
             if (comboxPeriyot.Text=="" || textbxAd.Text == "" || textbxTel.Text == "" || textbxCafe.Text == "" || textbxYas.Text == "" || uyelikcheck==false || Branslar=="" || comboxCins.Text=="")
             {
 
@@ -158,25 +172,27 @@ namespace proje
 
             }
             
-            else if(char.TryParse(textbxAd.Text, out isChar) & int.TryParse(textbxTel.)   )
-            
-            
-            
-            
+           
             
             else
             {
 
                 try
                 {
+                    Int32.TryParse(textbxCafe.Text, out Bakiye);
+
+                    int periyotAy = Int32.Parse(comboxPeriyot.Text) / 30;
+
+                    tutar = periyotAy * uyelikfiyat + Bakiye;
 
                     baglanti.Open();
-                    string query = "insert into UyeTbl (UyeAdSoyad,UyeTelefonNo,UyeCinsiyet,UyeYas,UyeBakiye,UyeBranslar,UyePeriyot,UyelikPaketi) values ('" + textbxAd.Text + "','" + textbxTel.Text + "','" + comboxCins.SelectedItem.ToString() + "','" + textbxYas.Text + "','"+textbxCafe.Text+"','"+Branslar+"','"+comboxPeriyot.SelectedItem+"','"+UyelikPaketi+"')";
+                    string query = "insert into UyeTbl (UyeAdSoyad,UyeTelefonNo,UyeCinsiyet,UyeYas,UyeBakiye,UyeBranslar,UyePeriyot,UyelikPaketi,BaslangicTarihi,BitisTarihi) values ('" + textbxAd.Text + "','" + textbxTel.Text + "','" + comboxCins.SelectedItem.ToString() + "','" + textbxYas.Text + "','"+textbxCafe.Text+"','"+Branslar+"','"+comboxPeriyot.SelectedItem+"','"+UyelikPaketi+"','"+BaslangicTarihi+"','"+BitisTarihi+"')";
                     SqlCommand komut= new SqlCommand(query,baglanti);
                     komut.ExecuteNonQuery();
-                    MessageBox.Show("Üye Kaydı Tamamlandı");
+                    
+                    MessageBox.Show("Üye Kaydı Tamamlandı Toplam Tutar:"+tutar);
                     textbxAd.Text = "";
-                    textbxBakiye.Text = "";
+                    textbxCafe.Text = "";
                     textbxTel.Text = "";
                     textbxYas.Text = "";
                     comboxCins.Text = "";
@@ -229,17 +245,21 @@ namespace proje
         }
         private void X_Click(object sender, EventArgs e)
         {
-            AnaSayfa anasayfa = new AnaSayfa();
+            AnaSayfa anasayfa = new AnaSayfa(username.Text);
             anasayfa.Show();
             this.Hide();
+
+
         }
 
 
         private void Geri_Click(object sender, EventArgs e)
         {
-            AnaSayfa anasayfa = new AnaSayfa();
+            AnaSayfa anasayfa = new AnaSayfa(username.Text);
             anasayfa.Show();
             this.Hide();
+
+
         }
 
         private void picbxYeni_Click(object sender, EventArgs e)
@@ -252,9 +272,42 @@ namespace proje
             
         }
 
-        private void comboxCins_SelectedIndexChanged(object sender, EventArgs e)
+       
+
+        private void textbxTel_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
+
+        private void textbxAd_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
+        }
+
+        private void textbxYas_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textbxCafe_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textbxBakiye_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }

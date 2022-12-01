@@ -15,11 +15,28 @@ namespace proje
 {
     public partial class Güncelle : Form
     {
-        public Güncelle()
+        public Güncelle(string username)
         {
             InitializeComponent();
+            this.username.Text = username;
         }
         SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\YUSUF\DOCUMENTS\DATABASESALON.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+        private void isimleAra()
+        {
+            baglanti.Open();
+            string query = "select *from UyeTbl where UyeAdSoyad= '"+textBox1.Text+"'";
+            SqlDataAdapter sda = new SqlDataAdapter(query, baglanti);
+            SqlCommandBuilder builder = new SqlCommandBuilder();
+            var ds = new DataSet();
+            sda.Fill(ds);
+            UYEDGV.DataSource = ds.Tables[0];
+            baglanti.Close();
+
+
+
+
+
+        }
         private void uyeGetir()
         {
             baglanti.Open();
@@ -36,15 +53,9 @@ namespace proje
 
 
         }
-        private void picbxYeni_Click(object sender, EventArgs e)
-        {
+       
 
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-           
-        }
+        
 
 
 
@@ -57,16 +68,20 @@ namespace proje
 
         private void X_Click_1(object sender, EventArgs e)
         {
-            AnaSayfa anasayfa = new AnaSayfa();
+            AnaSayfa anasayfa = new AnaSayfa(username.Text);
             anasayfa.Show();
             this.Hide();
+
+
         }
 
         private void Geri_Click(object sender, EventArgs e)
         {
-            AnaSayfa anasayfa = new AnaSayfa();
+            AnaSayfa anasayfa = new AnaSayfa(username.Text);
             anasayfa.Show();
             this.Hide();
+
+            
         }
 
         
@@ -75,7 +90,7 @@ namespace proje
         {
 
             textbxAd.Text = "";
-            textbxBakiye.Text = "";
+            textbxCafe.Text = "";
             textbxTel.Text = "";
             textbxYas.Text = "";
             comboxCins.Text = "";
@@ -100,7 +115,7 @@ namespace proje
             textbxTel.Text = UYEDGV.SelectedRows[0].Cells[2].Value.ToString();
             comboxCins.Text = UYEDGV.SelectedRows[0].Cells[3].Value.ToString();
             textbxYas.Text = UYEDGV.SelectedRows[0].Cells[4].Value.ToString();
-            textbxBakiye.Text = UYEDGV.SelectedRows[0].Cells[5].Value.ToString();
+            textbxCafe.Text = UYEDGV.SelectedRows[0].Cells[5].Value.ToString();
             string branslar = UYEDGV.SelectedRows[0].Cells[6].Value.ToString();
             comboxPeriyot.Text = UYEDGV.SelectedRows[0].Cells[7].Value.ToString();
             string paket = UYEDGV.SelectedRows[0].Cells[8].Value.ToString();
@@ -114,14 +129,14 @@ namespace proje
 
             foreach (string str in result)
             {
-                MessageBox.Show(str.ToString());
+                
                 for (int i=0; i<=8;i++)
                 {
                    
                     if (listbxBrans1.Items[i].ToString() == str)
                     {
 
-                        MessageBox.Show(listbxBrans1.Items[i].ToString());
+                        
                         listbxBrans1.SetItemChecked(i, true);
                     }
                 }
@@ -132,11 +147,11 @@ namespace proje
         private void btReset_Click(object sender, EventArgs e)
         {
             textbxAd.Text = "";
-            textbxBakiye.Text = "";
+            textbxCafe.Text = "";
             textbxTel.Text = "";
             textbxYas.Text = "";
-            comboxCins.Text = "";
-            comboxPeriyot.Text = "";
+            comboxCins.Text = " ";
+            comboxPeriyot.Text = " ";
 
             radiobtBronze.Checked = false;
             radiobtGold.Checked = false;
@@ -194,9 +209,42 @@ namespace proje
 
         private void btGunc_Click(object sender, EventArgs e)
         {
-            if (key == 0)
+            string Branslar = "";
+            for (int i = 0; i < listbxBrans1.Items.Count; i++)
             {
-                MessageBox.Show("Silinecek üyeyi seçiniz");
+                if (listbxBrans1.GetItemChecked(i) == true)
+                {
+
+                    Branslar = listbxBrans1.Items[i].ToString() + "," + Branslar;
+
+                }
+
+            }
+            string UyelikPaketi = "";
+            bool uyelikcheck = false;
+            if (radiobtPlat.Checked == true)
+            {
+                UyelikPaketi = radiobtPlat.Text;
+                uyelikcheck = true;
+               
+
+            }
+
+            else if (radiobtGold.Checked == true)
+            {
+                UyelikPaketi = radiobtGold.Text;
+                uyelikcheck = true;
+                
+            }
+            else if (radiobtBronze.Checked == true)
+            {
+                UyelikPaketi = radiobtBronze.Text;
+                uyelikcheck = !true;
+               
+            }
+            if (key == 0 || textbxAd.Text=="" || textbxTel.Text=="" || textbxCafe.Text=="" || textbxYas.Text=="" || comboxCins.Text=="" || comboxPeriyot.Text=="" || uyelikcheck==false || Branslar=="")
+            {
+                MessageBox.Show("Eksik bilgi/silinecek üyeyi seçiniz");
 
 
 
@@ -208,10 +256,10 @@ namespace proje
                 {
 
                     baglanti.Open();
-                    string query = "delete from UyeTbl where UyeId=" + key + ";";
+                    string query = "update UyeTbl set UyeAdSoyad='" + textbxAd.Text + "',UyeTelefonNo='" + textbxTel.Text + "' ,UyeCinsiyet='" + comboxCins.SelectedItem.ToString() + "' ,UyeYas='" + textbxYas.Text + "',UyeBakiye='" + textbxCafe.Text + "',UyeBranslar='" + Branslar + "', UyePeriyot='" + comboxPeriyot.SelectedItem + "' ,UyelikPaketi='" + UyelikPaketi + "' where UyeId=" + key +";";
                     SqlCommand komut = new SqlCommand(query, baglanti);
                     komut.ExecuteNonQuery();
-                    MessageBox.Show("Üye Silindi");
+                    MessageBox.Show("Üye Güncellendi");
                     baglanti.Close();
 
                 }
@@ -225,7 +273,51 @@ namespace proje
 
 
             }
+            uyeGetir();
         }
+
+        private void textbxAd_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
+        }
+
+        private void textbxTel_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textbxYas_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textbxBakiye_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar==(char)Keys.Space);
+        }
+
+        private void btara_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "")
+                uyeGetir();
+            else 
+            isimleAra();
+        }
+
+        
     }
 }
-//String MyStr = ListBox.items[5].ToString();

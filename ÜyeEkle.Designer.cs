@@ -46,8 +46,6 @@
             this.comboxCins = new System.Windows.Forms.ComboBox();
             this.labelAcıklama = new System.Windows.Forms.Label();
             this.comboxPeriyot = new System.Windows.Forms.ComboBox();
-            this.textbxBakiye = new System.Windows.Forms.TextBox();
-            this.labelTutar = new System.Windows.Forms.Label();
             this.listbxBrans = new System.Windows.Forms.CheckedListBox();
             this.labelBrans = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -56,7 +54,12 @@
             this.X = new System.Windows.Forms.Label();
             this.CafeBakiye = new System.Windows.Forms.Label();
             this.textbxCafe = new System.Windows.Forms.TextBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.username = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picbxYeni)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // picbxYeni
@@ -79,7 +82,7 @@
             this.radiobtBronze.Location = new System.Drawing.Point(553, 279);
             this.radiobtBronze.Name = "radiobtBronze";
             this.radiobtBronze.Size = new System.Drawing.Size(72, 24);
-            this.radiobtBronze.TabIndex = 6;
+            this.radiobtBronze.TabIndex = 31;
             this.radiobtBronze.TabStop = true;
             this.radiobtBronze.Text = "Bronze";
             this.radiobtBronze.UseVisualStyleBackColor = false;
@@ -94,7 +97,7 @@
             this.radiobtGold.Location = new System.Drawing.Point(553, 253);
             this.radiobtGold.Name = "radiobtGold";
             this.radiobtGold.Size = new System.Drawing.Size(56, 24);
-            this.radiobtGold.TabIndex = 7;
+            this.radiobtGold.TabIndex = 30;
             this.radiobtGold.TabStop = true;
             this.radiobtGold.Text = "Gold";
             this.radiobtGold.UseVisualStyleBackColor = false;
@@ -109,7 +112,7 @@
             this.radiobtPlat.Location = new System.Drawing.Point(553, 227);
             this.radiobtPlat.Name = "radiobtPlat";
             this.radiobtPlat.Size = new System.Drawing.Size(84, 24);
-            this.radiobtPlat.TabIndex = 5;
+            this.radiobtPlat.TabIndex = 29;
             this.radiobtPlat.TabStop = true;
             this.radiobtPlat.Text = "Platinum";
             this.radiobtPlat.UseVisualStyleBackColor = false;
@@ -158,6 +161,7 @@
             this.textbxAd.Name = "textbxAd";
             this.textbxAd.Size = new System.Drawing.Size(118, 27);
             this.textbxAd.TabIndex = 22;
+            this.textbxAd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textbxAd_KeyPress);
             // 
             // labelTel
             // 
@@ -177,6 +181,7 @@
             this.textbxTel.Name = "textbxTel";
             this.textbxTel.Size = new System.Drawing.Size(118, 27);
             this.textbxTel.TabIndex = 24;
+            this.textbxTel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textbxTel_KeyPress);
             // 
             // textbxYas
             // 
@@ -185,6 +190,7 @@
             this.textbxYas.Name = "textbxYas";
             this.textbxYas.Size = new System.Drawing.Size(116, 31);
             this.textbxYas.TabIndex = 25;
+            this.textbxYas.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textbxYas_KeyPress);
             // 
             // labelYas
             // 
@@ -231,8 +237,7 @@
             this.comboxCins.Location = new System.Drawing.Point(553, 159);
             this.comboxCins.Name = "comboxCins";
             this.comboxCins.Size = new System.Drawing.Size(118, 28);
-            this.comboxCins.TabIndex = 31;
-            this.comboxCins.SelectedIndexChanged += new System.EventHandler(this.comboxCins_SelectedIndexChanged);
+            this.comboxCins.TabIndex = 26;
             // 
             // labelAcıklama
             // 
@@ -261,28 +266,8 @@
             this.comboxPeriyot.Location = new System.Drawing.Point(693, 159);
             this.comboxPeriyot.Name = "comboxPeriyot";
             this.comboxPeriyot.Size = new System.Drawing.Size(118, 28);
-            this.comboxPeriyot.TabIndex = 33;
+            this.comboxPeriyot.TabIndex = 27;
             this.comboxPeriyot.SelectedIndexChanged += new System.EventHandler(this.comboxPeriyot_SelectedIndexChanged);
-            // 
-            // textbxBakiye
-            // 
-            this.textbxBakiye.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textbxBakiye.Location = new System.Drawing.Point(693, 276);
-            this.textbxBakiye.Name = "textbxBakiye";
-            this.textbxBakiye.ReadOnly = true;
-            this.textbxBakiye.Size = new System.Drawing.Size(118, 27);
-            this.textbxBakiye.TabIndex = 34;
-            // 
-            // labelTutar
-            // 
-            this.labelTutar.AutoSize = true;
-            this.labelTutar.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.labelTutar.ForeColor = System.Drawing.Color.Black;
-            this.labelTutar.Location = new System.Drawing.Point(725, 253);
-            this.labelTutar.Name = "labelTutar";
-            this.labelTutar.Size = new System.Drawing.Size(43, 20);
-            this.labelTutar.TabIndex = 35;
-            this.labelTutar.Text = "Tutar";
             // 
             // listbxBrans
             // 
@@ -300,7 +285,7 @@
             this.listbxBrans.Location = new System.Drawing.Point(838, 149);
             this.listbxBrans.Name = "listbxBrans";
             this.listbxBrans.Size = new System.Drawing.Size(116, 154);
-            this.listbxBrans.TabIndex = 36;
+            this.listbxBrans.TabIndex = 28;
             this.listbxBrans.SelectedIndexChanged += new System.EventHandler(this.listbxBrans_SelectedIndexChanged);
             // 
             // labelBrans
@@ -322,7 +307,7 @@
             this.button1.Location = new System.Drawing.Point(553, 390);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 30);
-            this.button1.TabIndex = 38;
+            this.button1.TabIndex = 33;
             this.button1.Text = "Kaydet";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -335,7 +320,7 @@
             this.button2.Location = new System.Drawing.Point(693, 390);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 30);
-            this.button2.TabIndex = 39;
+            this.button2.TabIndex = 34;
             this.button2.Text = "Reset";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -348,7 +333,7 @@
             this.Geri.Location = new System.Drawing.Point(838, 390);
             this.Geri.Name = "Geri";
             this.Geri.Size = new System.Drawing.Size(75, 30);
-            this.Geri.TabIndex = 40;
+            this.Geri.TabIndex = 35;
             this.Geri.Text = "Geri Dön";
             this.Geri.UseVisualStyleBackColor = false;
             this.Geri.Click += new System.EventHandler(this.Geri_Click);
@@ -369,7 +354,7 @@
             this.CafeBakiye.AutoSize = true;
             this.CafeBakiye.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.CafeBakiye.ForeColor = System.Drawing.Color.Black;
-            this.CafeBakiye.Location = new System.Drawing.Point(702, 200);
+            this.CafeBakiye.Location = new System.Drawing.Point(689, 204);
             this.CafeBakiye.Name = "CafeBakiye";
             this.CafeBakiye.Size = new System.Drawing.Size(98, 20);
             this.CafeBakiye.TabIndex = 43;
@@ -378,10 +363,48 @@
             // textbxCafe
             // 
             this.textbxCafe.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textbxCafe.Location = new System.Drawing.Point(693, 223);
+            this.textbxCafe.Location = new System.Drawing.Point(693, 227);
             this.textbxCafe.Name = "textbxCafe";
             this.textbxCafe.Size = new System.Drawing.Size(118, 27);
-            this.textbxCafe.TabIndex = 42;
+            this.textbxCafe.TabIndex = 32;
+            this.textbxCafe.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textbxCafe_KeyPress);
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(672, 283);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(160, 20);
+            this.dateTimePicker1.TabIndex = 44;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(668, 260);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(156, 20);
+            this.label1.TabIndex = 45;
+            this.label1.Text = "Üyelik Başlangıç Tarihi";
+            // 
+            // username
+            // 
+            this.username.Enabled = false;
+            this.username.Location = new System.Drawing.Point(39, 13);
+            this.username.Name = "username";
+            this.username.ReadOnly = true;
+            this.username.Size = new System.Drawing.Size(100, 20);
+            this.username.TabIndex = 76;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(8, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(25, 19);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 75;
+            this.pictureBox1.TabStop = false;
             // 
             // ÜyeEkle
             // 
@@ -389,6 +412,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(1009, 420);
+            this.Controls.Add(this.username);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.CafeBakiye);
             this.Controls.Add(this.textbxCafe);
             this.Controls.Add(this.X);
@@ -397,8 +424,6 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.labelBrans);
             this.Controls.Add(this.listbxBrans);
-            this.Controls.Add(this.labelTutar);
-            this.Controls.Add(this.textbxBakiye);
             this.Controls.Add(this.comboxPeriyot);
             this.Controls.Add(this.labelAcıklama);
             this.Controls.Add(this.comboxCins);
@@ -422,6 +447,7 @@
             this.Text = "ÜyeEkle";
             this.Load += new System.EventHandler(this.ÜyeEkle_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picbxYeni)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -444,8 +470,6 @@
         private System.Windows.Forms.Label labelPeriyot;
         private System.Windows.Forms.ComboBox comboxCins;
         private System.Windows.Forms.Label labelAcıklama;
-        private System.Windows.Forms.TextBox textbxBakiye;
-        private System.Windows.Forms.Label labelTutar;
         private System.Windows.Forms.CheckedListBox listbxBrans;
         private System.Windows.Forms.Label labelBrans;
         private System.Windows.Forms.Button button1;
@@ -455,5 +479,9 @@
         private System.Windows.Forms.Label CafeBakiye;
         private System.Windows.Forms.TextBox textbxCafe;
         private System.Windows.Forms.ComboBox comboxPeriyot;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox username;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

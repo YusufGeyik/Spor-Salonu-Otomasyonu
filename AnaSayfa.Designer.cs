@@ -34,12 +34,20 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.KullaniciAdi = new System.Windows.Forms.TextBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.Uyelistele = new System.Windows.Forms.Button();
+            this.username = new System.Windows.Forms.TextBox();
             this.X = new System.Windows.Forms.Label();
+            this.labelAlarm = new System.Windows.Forms.Label();
+            this.alarmbx = new System.Windows.Forms.RichTextBox();
+            this.UYEDGV = new System.Windows.Forms.DataGridView();
+            this.btara = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textbxCafe = new System.Windows.Forms.TextBox();
+            this.labelBakiye = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UYEDGV)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox2
@@ -49,10 +57,9 @@
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(0, 0);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(936, 622);
+            this.pictureBox2.Size = new System.Drawing.Size(1306, 685);
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // UyeEkle
             // 
@@ -102,58 +109,149 @@
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             // 
-            // KullaniciAdi
+            // username
             // 
-            this.KullaniciAdi.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.KullaniciAdi.Location = new System.Drawing.Point(650, 60);
-            this.KullaniciAdi.Name = "KullaniciAdi";
-            this.KullaniciAdi.ReadOnly = true;
-            this.KullaniciAdi.Size = new System.Drawing.Size(236, 49);
-            this.KullaniciAdi.TabIndex = 7;
-            this.KullaniciAdi.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(590, 396);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(296, 214);
-            this.richTextBox1.TabIndex = 8;
-            this.richTextBox1.Text = "";
-            // 
-            // Uyelistele
-            // 
-            this.Uyelistele.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Uyelistele.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.Uyelistele.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.Uyelistele.Location = new System.Drawing.Point(590, 326);
-            this.Uyelistele.Name = "Uyelistele";
-            this.Uyelistele.Size = new System.Drawing.Size(296, 64);
-            this.Uyelistele.TabIndex = 9;
-            this.Uyelistele.Text = "Üye Listesi";
-            this.Uyelistele.UseVisualStyleBackColor = false;
-            this.Uyelistele.Click += new System.EventHandler(this.button1_Click_1);
+            this.username.Cursor = System.Windows.Forms.Cursors.Default;
+            this.username.Enabled = false;
+            this.username.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.username.Location = new System.Drawing.Point(650, 60);
+            this.username.Name = "username";
+            this.username.ReadOnly = true;
+            this.username.Size = new System.Drawing.Size(236, 49);
+            this.username.TabIndex = 7;
             // 
             // X
             // 
             this.X.AutoSize = true;
             this.X.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.X.Location = new System.Drawing.Point(908, 9);
+            this.X.Location = new System.Drawing.Point(1278, 0);
             this.X.Name = "X";
             this.X.Size = new System.Drawing.Size(16, 20);
             this.X.TabIndex = 42;
             this.X.Text = "X";
             this.X.Click += new System.EventHandler(this.X_Click);
             // 
+            // labelAlarm
+            // 
+            this.labelAlarm.AutoSize = true;
+            this.labelAlarm.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.labelAlarm.ForeColor = System.Drawing.Color.Black;
+            this.labelAlarm.Location = new System.Drawing.Point(618, 362);
+            this.labelAlarm.Name = "labelAlarm";
+            this.labelAlarm.Size = new System.Drawing.Size(240, 20);
+            this.labelAlarm.TabIndex = 67;
+            this.labelAlarm.Text = "Üyelik Yenileme Zamanı Yaklaşanlar";
+            // 
+            // alarmbx
+            // 
+            this.alarmbx.Location = new System.Drawing.Point(590, 395);
+            this.alarmbx.Name = "alarmbx";
+            this.alarmbx.Size = new System.Drawing.Size(296, 228);
+            this.alarmbx.TabIndex = 68;
+            this.alarmbx.Text = "";
+            // 
+            // UYEDGV
+            // 
+            this.UYEDGV.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.UYEDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.UYEDGV.Location = new System.Drawing.Point(902, 133);
+            this.UYEDGV.MultiSelect = false;
+            this.UYEDGV.Name = "UYEDGV";
+            this.UYEDGV.ReadOnly = true;
+            this.UYEDGV.RowTemplate.Height = 25;
+            this.UYEDGV.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.UYEDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.UYEDGV.ShowCellErrors = false;
+            this.UYEDGV.ShowCellToolTips = false;
+            this.UYEDGV.ShowEditingIcon = false;
+            this.UYEDGV.Size = new System.Drawing.Size(404, 490);
+            this.UYEDGV.TabIndex = 69;
+            // 
+            // btara
+            // 
+            this.btara.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btara.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btara.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btara.Location = new System.Drawing.Point(902, 98);
+            this.btara.Name = "btara";
+            this.btara.Size = new System.Drawing.Size(75, 30);
+            this.btara.TabIndex = 73;
+            this.btara.Text = "Ara";
+            this.btara.UseVisualStyleBackColor = false;
+            this.btara.Click += new System.EventHandler(this.btara_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button1.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.button1.Location = new System.Drawing.Point(1097, 646);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 30);
+            this.button1.TabIndex = 74;
+            this.button1.Text = "Onayla";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // textbxCafe
+            // 
+            this.textbxCafe.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.textbxCafe.Location = new System.Drawing.Point(1178, 649);
+            this.textbxCafe.Name = "textbxCafe";
+            this.textbxCafe.Size = new System.Drawing.Size(118, 27);
+            this.textbxCafe.TabIndex = 76;
+            this.textbxCafe.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textbxCafe_KeyPress);
+            // 
+            // labelBakiye
+            // 
+            this.labelBakiye.AutoSize = true;
+            this.labelBakiye.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.labelBakiye.ForeColor = System.Drawing.Color.Black;
+            this.labelBakiye.Location = new System.Drawing.Point(1187, 626);
+            this.labelBakiye.Name = "labelBakiye";
+            this.labelBakiye.Size = new System.Drawing.Size(107, 20);
+            this.labelBakiye.TabIndex = 77;
+            this.labelBakiye.Text = "Alışveriş Tutarı";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.textBox1.Location = new System.Drawing.Point(983, 100);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(150, 27);
+            this.textBox1.TabIndex = 78;
+            this.textBox1.Text = "AD SOYAD";
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label1.Font = new System.Drawing.Font("Impact", 42F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label1.Location = new System.Drawing.Point(981, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(239, 68);
+            this.label1.TabIndex = 79;
+            this.label1.Text = "GYM CAFE";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // AnaSayfa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(936, 622);
+            this.ClientSize = new System.Drawing.Size(1306, 685);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.labelBakiye);
+            this.Controls.Add(this.textbxCafe);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btara);
+            this.Controls.Add(this.UYEDGV);
+            this.Controls.Add(this.alarmbx);
+            this.Controls.Add(this.labelAlarm);
             this.Controls.Add(this.X);
-            this.Controls.Add(this.Uyelistele);
-            this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.KullaniciAdi);
+            this.Controls.Add(this.username);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button3);
@@ -164,9 +262,9 @@
             this.Name = "AnaSayfa";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AnaSayfa";
-            this.Load += new System.EventHandler(this.AnaSayfa_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UYEDGV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -178,9 +276,16 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox KullaniciAdi;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Button Uyelistele;
+        private System.Windows.Forms.TextBox username;
         private System.Windows.Forms.Label X;
+        private System.Windows.Forms.Label labelAlarm;
+        private System.Windows.Forms.RichTextBox alarmbx;
+        private System.Windows.Forms.DataGridView UYEDGV;
+        private System.Windows.Forms.Button btara;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textbxCafe;
+        private System.Windows.Forms.Label labelBakiye;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label1;
     }
 }

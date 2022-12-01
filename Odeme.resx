@@ -117,4 +117,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADYAAAAyCAYAAAAX1CjLAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAA68AAAOvAGVvHJJAAAAB3RJ
+        TUUH5goaEyg0G1S6UwAAA4FJREFUaEPt2EuoVVUcx/FraeWrgRlaJikpgaGYitnEHBgOxIoQCXwlBg0C
+        HxOHQoEIDhRBRTMVKSIJTB2JPUxEERTxkYKUjdJ8ZWiZkWl+v3L+sLhcr+eec/bD2D/4wOGcs9da+7H+
+        e+3dVqVKlSpVqjSfR/E0RuCVGj/7nb89dBmAWfgMJ3AR12v87Hf+NhsDUfr0wlwcxi389wD/4gjmoTdK
+        mWfwCf5G+8Ffxs81fva79D9usxnPolRxp3YgHewVfIp3MBKDa/w8A1vhf9JtdqE0O+fltxHpAL/HJPTA
+        /eJvr+E7pNt65kpxWVokbiIGthPPod4MwnbE9l6Wc1Bo+uEgYlDH8AK6mqE4imjnEPqjsExFFIt/YHVr
+        NJ4l27At23wDhaQbliOO8mlYRBqN97MfEO2tgH3knu5I58aXaGY14bZfINpzrnZWfDJLT6QVbQ2azWpE
+        e1ZWK27ueQJ7EAOx5Ddz6bjtekR738KDl3segTfZGIhnr5kj7E58jWjPtWRhC+UFiIG4VBqLRvMyLiHa
+        W4zCMgoXEINZh0YmvNs4R6Mdd3A0CosD+hgxIB9LvB91da7NxDVEO5vwGArNS/gRMSjPoDfqx/GgOHgf
+        c35FbH8WLpRLEVfrVxGD+xMe9VfR0YLWIjMBVtI/ENvZhk8DhdyYO4rVy7OUzjf9hm+wCktqVsLq1/6R
+        xSfr+SjlK4O38AvSAdfjPN5G6eJ8ckH8FbwMOxp8Z27Ah0wXvt74S5HhcD6lcyX8jlPw5u3aT372O39r
+        /38Pijf9F1FoXofPYOngPPouhxZhPHxjZbHw1iBXGH7nbwvhfHObtA3fYk1B7kXEDp0T6Xy6DXfoTfRF
+        vfG/0+AO2ka0dw7TkevOTUa6U96YP0QzT71PYSnSG7VFxTOXS4bhOKJzS7pl2uezZmOpfxfpreAkMp9z
+        Vr/0jdRf+ACu9FsV23of6bzbgkyrpcXCyy469PmpnqVTV2ObaxH9WHEzuyRd132O6OwnWOqzim+7ziD6
+        24YsDuK9xW66WP0IWVYs27aYRH8uuTJZHL+HO7ATC8Y4ZB0fPqOQ2Ldzr6Xx6PkQGUfvAJ5E1umD/Yh+
+        N6ClV4nX9m5EBy57WlkJ7xd3wnf50a8vj1paHV0d7IUlWMuQV5zL0e8+tPRK8ebr9T6xZgjyyvOIfseg
+        FQuBKlWqVKnyf0hb212pNT2FUiEbbgAAAABJRU5ErkJggg==
+</value>
+  </data>
 </root>

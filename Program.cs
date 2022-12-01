@@ -16,7 +16,7 @@ namespace proje
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Güncelle());
+            Application.Run(new AnaSayfa("admin"));
         }
     }
 }
