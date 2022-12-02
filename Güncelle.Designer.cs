@@ -343,6 +343,7 @@
             // 
             this.button7.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button7.Enabled = false;
             this.button7.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.button7.ForeColor = System.Drawing.Color.Black;
             this.button7.Location = new System.Drawing.Point(0, 0);
@@ -416,7 +417,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(8, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(2, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(25, 19);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -426,7 +427,7 @@
             // username
             // 
             this.username.Enabled = false;
-            this.username.Location = new System.Drawing.Point(39, 12);
+            this.username.Location = new System.Drawing.Point(33, 12);
             this.username.Name = "username";
             this.username.ReadOnly = true;
             this.username.Size = new System.Drawing.Size(100, 20);

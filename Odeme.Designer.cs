@@ -51,6 +51,7 @@
             // 
             this.button7.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button7.Enabled = false;
             this.button7.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.button7.ForeColor = System.Drawing.Color.Black;
             this.button7.Location = new System.Drawing.Point(0, 0);

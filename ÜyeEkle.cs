@@ -135,9 +135,9 @@ namespace proje
                 }
 
             }
-            string BitisTarihi = (dateTimePicker1.Value.AddDays(Int64.Parse(comboxPeriyot.Text)).ToString());
+            string BitisTarihi = (dateTimePicker1.Value.AddDays(Int64.Parse(comboxPeriyot.Text)).ToString("dd.MM.yyyy"));
             string AlarmBaslamaTarihi= (dateTimePicker1.Value.AddDays(Int64.Parse(comboxPeriyot.Text)).ToString());
-            string BaslangicTarihi = dateTimePicker1.Value.ToString();
+            string BaslangicTarihi = dateTimePicker1.Value.ToString("dd.MM.yyyy");
            
         
             bool uyelikcheck = false;
@@ -182,11 +182,11 @@ namespace proje
                     Int32.TryParse(textbxCafe.Text, out Bakiye);
 
                     int periyotAy = Int32.Parse(comboxPeriyot.Text) / 30;
-
+                    int odenenmiktar = 0;
                     tutar = periyotAy * uyelikfiyat + Bakiye;
-
+                    string log =BaslangicTarihi.ToString()+" "+username.Text + "üye ekle,";
                     baglanti.Open();
-                    string query = "insert into UyeTbl (UyeAdSoyad,UyeTelefonNo,UyeCinsiyet,UyeYas,UyeBakiye,UyeBranslar,UyePeriyot,UyelikPaketi,BaslangicTarihi,BitisTarihi) values ('" + textbxAd.Text + "','" + textbxTel.Text + "','" + comboxCins.SelectedItem.ToString() + "','" + textbxYas.Text + "','"+textbxCafe.Text+"','"+Branslar+"','"+comboxPeriyot.SelectedItem+"','"+UyelikPaketi+"','"+BaslangicTarihi+"','"+BitisTarihi+"')";
+                    string query = "insert into UyeTbl (UyeAdSoyad,UyeTelefonNo,UyeCinsiyet,UyeYas,UyeBakiye,UyeBranslar,UyePeriyot,UyelikPaketi,BaslangicTarihi,BitisTarihi,log,odenenmiktar) values ('" + textbxAd.Text + "','" + textbxTel.Text + "','" + comboxCins.SelectedItem.ToString() + "','" + textbxYas.Text + "','"+textbxCafe.Text+"','"+Branslar+"','"+comboxPeriyot.SelectedItem+"','"+UyelikPaketi+"','"+BaslangicTarihi+"','"+BitisTarihi+"','"+log+ "','"+odenenmiktar+"')";
                     SqlCommand komut= new SqlCommand(query,baglanti);
                     komut.ExecuteNonQuery();
                     

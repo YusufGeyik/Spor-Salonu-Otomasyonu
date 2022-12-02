@@ -30,6 +30,7 @@ namespace proje
             var ds = new DataSet();
             sda.Fill(ds);
             UYEDGV.DataSource = ds.Tables[0];
+            
             baglanti.Close();
 
 
@@ -109,40 +110,47 @@ namespace proje
                 }
 
             }
-
             key = Convert.ToInt32(UYEDGV.SelectedRows[0].Cells[0].Value.ToString());
-            textbxAd.Text = UYEDGV.SelectedRows[0].Cells[1].Value.ToString();
-            textbxTel.Text = UYEDGV.SelectedRows[0].Cells[2].Value.ToString();
-            comboxCins.Text = UYEDGV.SelectedRows[0].Cells[3].Value.ToString();
-            textbxYas.Text = UYEDGV.SelectedRows[0].Cells[4].Value.ToString();
-            textbxCafe.Text = UYEDGV.SelectedRows[0].Cells[5].Value.ToString();
-            string branslar = UYEDGV.SelectedRows[0].Cells[6].Value.ToString();
-            comboxPeriyot.Text = UYEDGV.SelectedRows[0].Cells[7].Value.ToString();
-            string paket = UYEDGV.SelectedRows[0].Cells[8].Value.ToString();
-            if (paket == "Platinum")
-                radiobtPlat.Checked = true;
-            else if (paket == "Gold")
-                radiobtGold.Checked = true;
-            else if (paket == "Bronze")
-                radiobtBronze.Checked = true;
-            string[] result = branslar.Split(',');
-
-            foreach (string str in result)
+            if (key != 0)
             {
-                
-                for (int i=0; i<=8;i++)
+                key = Convert.ToInt32(UYEDGV.SelectedRows[0].Cells[0].Value.ToString());
+                textbxAd.Text = UYEDGV.SelectedRows[0].Cells[1].Value.ToString();
+                textbxTel.Text = UYEDGV.SelectedRows[0].Cells[2].Value.ToString();
+                comboxCins.Text = UYEDGV.SelectedRows[0].Cells[3].Value.ToString();
+                textbxYas.Text = UYEDGV.SelectedRows[0].Cells[4].Value.ToString();
+                textbxCafe.Text = UYEDGV.SelectedRows[0].Cells[5].Value.ToString();
+                string branslar = UYEDGV.SelectedRows[0].Cells[6].Value.ToString();
+                comboxPeriyot.Text = UYEDGV.SelectedRows[0].Cells[7].Value.ToString();
+                string paket = UYEDGV.SelectedRows[0].Cells[8].Value.ToString();
+                if (paket == "Platinum")
+                    radiobtPlat.Checked = true;
+                else if (paket == "Gold")
+                    radiobtGold.Checked = true;
+                else if (paket == "Bronze")
+                    radiobtBronze.Checked = true;
+                string[] result = branslar.Split(',');
+
+                foreach (string str in result)
                 {
-                   
-                    if (listbxBrans1.Items[i].ToString() == str)
+
+                    for (int i = 0; i <= 8; i++)
                     {
 
-                        
-                        listbxBrans1.SetItemChecked(i, true);
+                        if (listbxBrans1.Items[i].ToString() == str)
+                        {
+
+
+                            listbxBrans1.SetItemChecked(i, true);
+                        }
                     }
+
                 }
-                
             }
+            else
+                MessageBox.Show("Seçilecek üyeye tıklayınız");
         }
+       
+
 
         private void btReset_Click(object sender, EventArgs e)
         {
@@ -254,14 +262,44 @@ namespace proje
             {
                 try
                 {
-
                     baglanti.Open();
-                    string query = "update UyeTbl set UyeAdSoyad='" + textbxAd.Text + "',UyeTelefonNo='" + textbxTel.Text + "' ,UyeCinsiyet='" + comboxCins.SelectedItem.ToString() + "' ,UyeYas='" + textbxYas.Text + "',UyeBakiye='" + textbxCafe.Text + "',UyeBranslar='" + Branslar + "', UyePeriyot='" + comboxPeriyot.SelectedItem + "' ,UyelikPaketi='" + UyelikPaketi + "' where UyeId=" + key +";";
-                    SqlCommand komut = new SqlCommand(query, baglanti);
-                    komut.ExecuteNonQuery();
-                    MessageBox.Show("Üye Güncellendi");
-                    baglanti.Close();
 
+                    string query = "update UyeTbl set UyeAdSoyad='" + textbxAd.Text + "',UyeTelefonNo='" + textbxTel.Text + "' ,UyeCinsiyet='" + comboxCins.SelectedItem.ToString() + "' ,UyeYas='" + textbxYas.Text + "',UyeBakiye='" + textbxCafe.Text + "',UyeBranslar='" + Branslar + "', UyePeriyot='" + comboxPeriyot.SelectedItem + "' ,UyelikPaketi='" + UyelikPaketi + "' where UyeId=" + key + ";";
+                    string okumaquery = "select * from UyeTbl where UyeId=" + key + ";";
+                    // SqlCommand command = new SqlCommand(okumaquery,baglanti);
+                    using (SqlCommand command = new SqlCommand(okumaquery, baglanti))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            
+                            while (reader.Read())
+                            {
+
+                                
+                                DateTime now=DateTime.Now;
+
+                                string log = (reader["log"].ToString());
+
+                                log += now.ToString()+" "+username.Text + " güncelle," ;
+
+                                SqlConnection baglanti2 = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\YUSUF\DOCUMENTS\DATABASESALON.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                                string logson = "update UyeTbl set log='"+ log +"' where UyeId=" + key + ";";
+                                baglanti2.Open();
+                                SqlCommand logyaz= new SqlCommand(logson, baglanti2);
+                                logyaz.ExecuteNonQuery();
+                                baglanti2.Close();
+                            }
+                            
+                        }
+                       
+                        SqlCommand komut = new SqlCommand(query, baglanti);
+
+
+                        komut.ExecuteNonQuery();
+                        MessageBox.Show("Üye Güncellendi");
+                        baglanti.Close();
+
+                    }
                 }
                 catch (Exception Error)
                 {

@@ -17,17 +17,82 @@ namespace proje
 {
     public partial class AnaSayfa : Form
     {
-        
+
         public AnaSayfa(string username)
         {
             InitializeComponent();
             uyeGetir();
-            this.username.Text = username; 
+            this.username.Text = username;
+            alarm();
+            borcliste();
+            
         }
 
-        void fonksiyon()
+
+
+       void borcliste()
         {
-            
+
+            using (SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\YUSUF\DOCUMENTS\DATABASESALON.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
+            using (SqlCommand command = new SqlCommand("select * from UyeTbl", baglanti))
+            {
+                baglanti.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    string borclular="";
+                    while (reader.Read())
+                    {
+                        DateTime Kontrol = DateTime.Now.AddDays(4);
+                        string Kontrols = Kontrol.ToString("dd.MM.yyyy");
+                        Kontrol = Convert.ToDateTime(Kontrols);
+                        
+                        
+                        string AdSoyad = reader["UyeAdSoyad"].ToString();
+                        int UyeId =Convert.ToInt32(reader["UyeId"]);
+                       int odenenmiktar = Convert.ToInt32(reader["odenenmiktar"]);
+                        string uyelikpaketi = reader["UyelikPaketi"].ToString();
+                        int bakiye =Convert.ToInt32(reader["UyeBakiye"]);
+
+                        bakiye = bakiye < 0 ? (Math.Abs(bakiye)) : 0;
+                        int periyot = Convert.ToInt32(reader["UyePeriyot"])/30;
+                        int tutar=0;
+                        if (uyelikpaketi == "Platinum")
+                            tutar = 1000 * periyot;
+                        else if (uyelikpaketi == "Gold")
+                            tutar = 500 * periyot;
+                        else if (uyelikpaketi == "Bronze")
+                            tutar = 250 * periyot;
+
+                        if (odenenmiktar < tutar)
+                        {
+                           borclular +="Id:"+UyeId+" "  +AdSoyad+"  Üyelik Paket Borcu="+(tutar-odenenmiktar) + "  Gym Cafe Bakiye Borcu="+bakiye+"\n" ;
+                        
+
+
+                       }
+
+
+
+
+
+
+                    }
+                    richTextBox1.Text = borclular;
+                }
+            }
+
+
+
+
+
+
+        }
+        
+        
+        
+        void alarm()
+        {
+
 
 
             using (SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\YUSUF\DOCUMENTS\DATABASESALON.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
@@ -44,6 +109,7 @@ namespace proje
                         Kontrol = Convert.ToDateTime(Kontrols);
 
                         string BitisTarihis = (reader["BitisTarihi"].ToString());
+                        int UyeId = Convert.ToInt32(reader["UyeId"]);
                         DateTime BitisTarihi = Convert.ToDateTime(BitisTarihis);
                         BitisTarihis = BitisTarihi.ToString("dd.MM.yyyy");
                         int result = DateTime.Compare(BitisTarihi, Kontrol);
@@ -51,7 +117,7 @@ namespace proje
                         {
                             string ad = (reader["UyeAdSoyad"].ToString());
                             string ÜyeSon = BitisTarihi.Subtract(DateTime.Now).ToString();
-                            string increment = string.Format("{0}  Bitiş Tarihi: {1}\n", ad, BitisTarihis);
+                            string increment = string.Format("Id={2}    {0}   Bitiş Tarihi: {1}\n", ad, BitisTarihis,UyeId);
                             Alarm += increment;
                         }
 
@@ -69,7 +135,7 @@ namespace proje
 
         }
 
-    SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\YUSUF\DOCUMENTS\DATABASESALON.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+        SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\YUSUF\DOCUMENTS\DATABASESALON.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         private void isimleAra()
         {
             baglanti.Open();
@@ -98,7 +164,7 @@ namespace proje
             baglanti.Close();
 
 
-            
+
 
 
         }
@@ -110,12 +176,12 @@ namespace proje
             ÜyeEkle uyeekle = new ÜyeEkle(username.Text);
             uyeekle.Show();
             this.Hide();
-            
+
         }
 
         private void UyeEkle_Click(object sender, EventArgs e)
         {
-            Güncelle güncelle=new Güncelle(username.Text);
+            Güncelle güncelle = new Güncelle(username.Text);
             güncelle.Show();
             this.Hide();
 
@@ -150,12 +216,13 @@ namespace proje
 
         private void button4_Click(object sender, EventArgs e)
         {
-          
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            key=Convert.ToInt32(UYEDGV.SelectedRows[0].Cells[0].Value.ToString());
+            
+            key = Convert.ToInt32(UYEDGV.SelectedRows[0].Cells[0].Value.ToString());
             if (key == 0 || textbxCafe.Text == "")
             {
                 MessageBox.Show("Alışveriş yapan üyeyi seçiniz - alışveriş tutarını giriniz");
@@ -170,16 +237,16 @@ namespace proje
 
                     baglanti.Open();
                     string streskibakiye = UYEDGV.SelectedRows[0].Cells[5].Value.ToString();
-                    int YeniBakiye = Convert.ToInt32(streskibakiye)-Convert.ToInt32(textbxCafe.Text);
-                    string query = "update UyeTbl set UyeBakiye='" +YeniBakiye+"' where UyeId=" + key + ";";
+                    int YeniBakiye = Convert.ToInt32(streskibakiye) - Convert.ToInt32(textbxCafe.Text);
+                    string query = "update UyeTbl set UyeBakiye='" + YeniBakiye + "' where UyeId=" + key + ";";
                     SqlCommand komut = new SqlCommand(query, baglanti);
-                    komut.ExecuteNonQuery(); 
+                    komut.ExecuteNonQuery();
                     baglanti.Close();
                     uyeGetir();
                     key = Convert.ToInt32(UYEDGV.SelectedRows[0].Cells[0].Value.ToString());
                     string Yenibakiye = UYEDGV.SelectedRows[0].Cells[5].Value.ToString();
-                    MessageBox.Show("Ödeme Başarılı Yeni Bakiye "+Yenibakiye);
-                  
+                    MessageBox.Show("Ödeme Başarılı Yeni Bakiye " + Yenibakiye);
+
 
                 }
                 catch (Exception Error)
@@ -194,6 +261,7 @@ namespace proje
             }
             uyeGetir();
             key = 0;
+            borcliste();
         }
 
         private void btara_Click(object sender, EventArgs e)
@@ -203,7 +271,20 @@ namespace proje
             else
                 isimleAra();
         }
+
+        private void labelAlarm_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UyelikYenile_Click(object sender, EventArgs e)
+        {
+            Uyelikyenile güncelle = new Uyelikyenile(username.Text);
+            güncelle.Show();
+            this.Hide();
+
+        }
     }
-    }
-    
+}
+  
 

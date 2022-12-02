@@ -45,6 +45,9 @@
             this.labelBakiye = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.UyelikYenile = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UYEDGV)).BeginInit();
@@ -79,7 +82,7 @@
             this.button2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button2.Location = new System.Drawing.Point(590, 256);
+            this.button2.Location = new System.Drawing.Point(590, 326);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(296, 64);
             this.button2.TabIndex = 4;
@@ -136,17 +139,19 @@
             this.labelAlarm.AutoSize = true;
             this.labelAlarm.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.labelAlarm.ForeColor = System.Drawing.Color.Black;
-            this.labelAlarm.Location = new System.Drawing.Point(618, 362);
+            this.labelAlarm.Location = new System.Drawing.Point(624, 410);
             this.labelAlarm.Name = "labelAlarm";
             this.labelAlarm.Size = new System.Drawing.Size(240, 20);
             this.labelAlarm.TabIndex = 67;
             this.labelAlarm.Text = "Üyelik Yenileme Zamanı Yaklaşanlar";
+            this.labelAlarm.Click += new System.EventHandler(this.labelAlarm_Click);
             // 
             // alarmbx
             // 
-            this.alarmbx.Location = new System.Drawing.Point(590, 395);
+            this.alarmbx.Font = new System.Drawing.Font("Impact", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.alarmbx.Location = new System.Drawing.Point(590, 433);
             this.alarmbx.Name = "alarmbx";
-            this.alarmbx.Size = new System.Drawing.Size(296, 228);
+            this.alarmbx.Size = new System.Drawing.Size(296, 190);
             this.alarmbx.TabIndex = 68;
             this.alarmbx.Text = "";
             // 
@@ -236,11 +241,47 @@
             this.label1.Text = "GYM CAFE";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Font = new System.Drawing.Font("Impact", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.richTextBox1.Location = new System.Drawing.Point(0, 556);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(492, 129);
+            this.richTextBox1.TabIndex = 80;
+            this.richTextBox1.Text = "";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(165, 533);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(97, 20);
+            this.label2.TabIndex = 81;
+            this.label2.Text = "Borçlu Üyeler";
+            // 
+            // UyelikYenile
+            // 
+            this.UyelikYenile.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.UyelikYenile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.UyelikYenile.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.UyelikYenile.Location = new System.Drawing.Point(590, 256);
+            this.UyelikYenile.Name = "UyelikYenile";
+            this.UyelikYenile.Size = new System.Drawing.Size(296, 64);
+            this.UyelikYenile.TabIndex = 82;
+            this.UyelikYenile.Text = "Üyelik Yenile";
+            this.UyelikYenile.UseVisualStyleBackColor = false;
+            this.UyelikYenile.Click += new System.EventHandler(this.UyelikYenile_Click);
+            // 
             // AnaSayfa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1306, 685);
+            this.Controls.Add(this.UyelikYenile);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.labelBakiye);
@@ -287,5 +328,8 @@
         private System.Windows.Forms.Label labelBakiye;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button UyelikYenile;
     }
 }
