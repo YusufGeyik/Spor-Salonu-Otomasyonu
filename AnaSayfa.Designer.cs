@@ -48,6 +48,7 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.UyelikYenile = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UYEDGV)).BeginInit();
@@ -69,9 +70,9 @@
             this.UyeEkle.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.UyeEkle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.UyeEkle.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.UyeEkle.Location = new System.Drawing.Point(590, 186);
+            this.UyeEkle.Location = new System.Drawing.Point(590, 184);
             this.UyeEkle.Name = "UyeEkle";
-            this.UyeEkle.Size = new System.Drawing.Size(296, 64);
+            this.UyeEkle.Size = new System.Drawing.Size(296, 45);
             this.UyeEkle.TabIndex = 2;
             this.UyeEkle.Text = "Görüntüle ve Güncelle";
             this.UyeEkle.UseVisualStyleBackColor = false;
@@ -82,9 +83,9 @@
             this.button2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button2.Location = new System.Drawing.Point(590, 326);
+            this.button2.Location = new System.Drawing.Point(590, 286);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(296, 64);
+            this.button2.Size = new System.Drawing.Size(296, 45);
             this.button2.TabIndex = 4;
             this.button2.Text = "Ödeme";
             this.button2.UseVisualStyleBackColor = false;
@@ -95,9 +96,9 @@
             this.button3.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.button3.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button3.Location = new System.Drawing.Point(590, 116);
+            this.button3.Location = new System.Drawing.Point(590, 133);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(296, 64);
+            this.button3.Size = new System.Drawing.Size(296, 45);
             this.button3.TabIndex = 5;
             this.button3.Text = "Üye Ekle";
             this.button3.UseVisualStyleBackColor = false;
@@ -164,7 +165,7 @@
             this.UYEDGV.Name = "UYEDGV";
             this.UYEDGV.ReadOnly = true;
             this.UYEDGV.RowTemplate.Height = 25;
-            this.UYEDGV.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.UYEDGV.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.UYEDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.UYEDGV.ShowCellErrors = false;
             this.UYEDGV.ShowCellToolTips = false;
@@ -266,19 +267,33 @@
             this.UyelikYenile.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.UyelikYenile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.UyelikYenile.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.UyelikYenile.Location = new System.Drawing.Point(590, 256);
+            this.UyelikYenile.Location = new System.Drawing.Point(590, 235);
             this.UyelikYenile.Name = "UyelikYenile";
-            this.UyelikYenile.Size = new System.Drawing.Size(296, 64);
+            this.UyelikYenile.Size = new System.Drawing.Size(296, 45);
             this.UyelikYenile.TabIndex = 82;
             this.UyelikYenile.Text = "Üyelik Yenile";
             this.UyelikYenile.UseVisualStyleBackColor = false;
             this.UyelikYenile.Click += new System.EventHandler(this.UyelikYenile_Click);
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.button4.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.button4.Location = new System.Drawing.Point(590, 337);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(296, 45);
+            this.button4.TabIndex = 83;
+            this.button4.Text = "İşlem Geçmişi Sorgula";
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click_1);
             // 
             // AnaSayfa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1306, 685);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.UyelikYenile);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.richTextBox1);
@@ -331,5 +346,6 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button UyelikYenile;
+        private System.Windows.Forms.Button button4;
     }
 }

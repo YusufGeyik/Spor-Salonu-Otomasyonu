@@ -34,8 +34,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.labelBrans = new System.Windows.Forms.Label();
             this.listbxBrans1 = new System.Windows.Forms.CheckedListBox();
-            this.labelBakiye = new System.Windows.Forms.Label();
-            this.textbxCafe = new System.Windows.Forms.TextBox();
             this.comboxPeriyot = new System.Windows.Forms.ComboBox();
             this.labelAcıklama = new System.Windows.Forms.Label();
             this.comboxCins = new System.Windows.Forms.ComboBox();
@@ -132,26 +130,6 @@
             this.listbxBrans1.Size = new System.Drawing.Size(116, 154);
             this.listbxBrans1.TabIndex = 60;
             // 
-            // labelBakiye
-            // 
-            this.labelBakiye.AutoSize = true;
-            this.labelBakiye.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.labelBakiye.ForeColor = System.Drawing.Color.Black;
-            this.labelBakiye.Location = new System.Drawing.Point(689, 288);
-            this.labelBakiye.Name = "labelBakiye";
-            this.labelBakiye.Size = new System.Drawing.Size(98, 20);
-            this.labelBakiye.TabIndex = 59;
-            this.labelBakiye.Text = "Cafe Bakiyesi";
-            // 
-            // textbxCafe
-            // 
-            this.textbxCafe.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textbxCafe.Location = new System.Drawing.Point(693, 311);
-            this.textbxCafe.Name = "textbxCafe";
-            this.textbxCafe.Size = new System.Drawing.Size(118, 27);
-            this.textbxCafe.TabIndex = 58;
-            this.textbxCafe.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textbxBakiye_KeyPress);
-            // 
             // comboxPeriyot
             // 
             this.comboxPeriyot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -185,8 +163,8 @@
             this.comboxCins.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.comboxCins.FormattingEnabled = true;
             this.comboxCins.Items.AddRange(new object[] {
-            "Erkek",
-            "Kadın"});
+            "ERKEK",
+            "KADIN"});
             this.comboxCins.Location = new System.Drawing.Point(553, 243);
             this.comboxCins.Name = "comboxCins";
             this.comboxCins.Size = new System.Drawing.Size(118, 28);
@@ -452,8 +430,6 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.labelBrans);
             this.Controls.Add(this.listbxBrans1);
-            this.Controls.Add(this.labelBakiye);
-            this.Controls.Add(this.textbxCafe);
             this.Controls.Add(this.comboxPeriyot);
             this.Controls.Add(this.labelAcıklama);
             this.Controls.Add(this.comboxCins);
@@ -489,8 +465,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label labelBrans;
         private System.Windows.Forms.CheckedListBox listbxBrans1;
-        private System.Windows.Forms.Label labelBakiye;
-        private System.Windows.Forms.TextBox textbxCafe;
         private System.Windows.Forms.ComboBox comboxPeriyot;
         private System.Windows.Forms.Label labelAcıklama;
         private System.Windows.Forms.ComboBox comboxCins;

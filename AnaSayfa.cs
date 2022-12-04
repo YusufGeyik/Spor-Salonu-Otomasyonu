@@ -49,23 +49,18 @@ namespace proje
                         
                         string AdSoyad = reader["UyeAdSoyad"].ToString();
                         int UyeId =Convert.ToInt32(reader["UyeId"]);
-                       int odenenmiktar = Convert.ToInt32(reader["odenenmiktar"]);
+                       int paketborcu = Convert.ToInt32(reader["paketborcu"]);
                         string uyelikpaketi = reader["UyelikPaketi"].ToString();
                         int bakiye =Convert.ToInt32(reader["UyeBakiye"]);
 
                         bakiye = bakiye < 0 ? (Math.Abs(bakiye)) : 0;
                         int periyot = Convert.ToInt32(reader["UyePeriyot"])/30;
                         int tutar=0;
-                        if (uyelikpaketi == "Platinum")
-                            tutar = 1000 * periyot;
-                        else if (uyelikpaketi == "Gold")
-                            tutar = 500 * periyot;
-                        else if (uyelikpaketi == "Bronze")
-                            tutar = 250 * periyot;
+                        
 
-                        if (odenenmiktar < tutar)
+                        if (paketborcu<0)
                         {
-                           borclular +="Id:"+UyeId+" "  +AdSoyad+"  Üyelik Paket Borcu="+(tutar-odenenmiktar) + "  Gym Cafe Bakiye Borcu="+bakiye+"\n" ;
+                           borclular +="Id:"+UyeId+" "  +AdSoyad+"  Üyelik Paket Borcu="+(-paketborcu) + "  Gym Cafe Bakiye Borcu="+bakiye+"\n" ;
                         
 
 
@@ -109,6 +104,7 @@ namespace proje
                         Kontrol = Convert.ToDateTime(Kontrols);
 
                         string BitisTarihis = (reader["BitisTarihi"].ToString());
+                        string uyelikpaketi = reader["UyelikPaketi"].ToString();
                         int UyeId = Convert.ToInt32(reader["UyeId"]);
                         DateTime BitisTarihi = Convert.ToDateTime(BitisTarihis);
                         BitisTarihis = BitisTarihi.ToString("dd.MM.yyyy");
@@ -117,7 +113,7 @@ namespace proje
                         {
                             string ad = (reader["UyeAdSoyad"].ToString());
                             string ÜyeSon = BitisTarihi.Subtract(DateTime.Now).ToString();
-                            string increment = string.Format("Id={2}    {0}   Bitiş Tarihi: {1}\n", ad, BitisTarihis,UyeId);
+                            string increment = "Id=" + UyeId + "  " + ad + "  " + uyelikpaketi + "  " +  BitisTarihis;
                             Alarm += increment;
                         }
 
@@ -221,47 +217,55 @@ namespace proje
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-            key = Convert.ToInt32(UYEDGV.SelectedRows[0].Cells[0].Value.ToString());
-            if (key == 0 || textbxCafe.Text == "")
+            if (UYEDGV.SelectedRows[0].Cells[0].Value != null)
             {
-                MessageBox.Show("Alışveriş yapan üyeyi seçiniz - alışveriş tutarını giriniz");
+                key = Convert.ToInt32(UYEDGV.SelectedRows[0].Cells[0].Value.ToString());
+                if (key == 0 || textbxCafe.Text == "")
+                {
+                    MessageBox.Show("Alışveriş yapan üyeyi seçiniz - alışveriş tutarını giriniz");
 
 
 
+                }
+                else
+                {
+                    try
+                    {
+
+
+                        baglanti.Open();
+                        DateTime now = DateTime.Now;
+                        string UyeBakiyelog = UYEDGV.SelectedRows[0].Cells[14].Value.ToString();
+                        UyeBakiyelog = UyeBakiyelog + "," + now + "  " + username.Text + " - " + textbxCafe.Text + " TL GYM CAFE";
+                        string streskibakiye = UYEDGV.SelectedRows[0].Cells[5].Value.ToString();
+                        int YeniBakiye = Convert.ToInt32(streskibakiye) - Convert.ToInt32(textbxCafe.Text);
+                        string query = "update UyeTbl set UyeBakiye='" + YeniBakiye + "',logUyeBakiye='" + UyeBakiyelog + "' where UyeId=" + key + ";";
+                        SqlCommand komut = new SqlCommand(query, baglanti);
+                        komut.ExecuteNonQuery();
+                        baglanti.Close();
+                        uyeGetir();
+                        key = Convert.ToInt32(UYEDGV.SelectedRows[0].Cells[0].Value.ToString());
+                        string Yenibakiye = UYEDGV.SelectedRows[0].Cells[5].Value.ToString();
+                        MessageBox.Show("Ödeme Başarılı Yeni Bakiye " + Yenibakiye);
+
+
+                    }
+                    catch (Exception Error)
+                    {
+
+                        MessageBox.Show(Error.Message);
+
+                    }
+
+
+
+                }
+                uyeGetir();
+                key = 0;
+                borcliste();
             }
             else
-            {
-                try
-                {
-
-                    baglanti.Open();
-                    string streskibakiye = UYEDGV.SelectedRows[0].Cells[5].Value.ToString();
-                    int YeniBakiye = Convert.ToInt32(streskibakiye) - Convert.ToInt32(textbxCafe.Text);
-                    string query = "update UyeTbl set UyeBakiye='" + YeniBakiye + "' where UyeId=" + key + ";";
-                    SqlCommand komut = new SqlCommand(query, baglanti);
-                    komut.ExecuteNonQuery();
-                    baglanti.Close();
-                    uyeGetir();
-                    key = Convert.ToInt32(UYEDGV.SelectedRows[0].Cells[0].Value.ToString());
-                    string Yenibakiye = UYEDGV.SelectedRows[0].Cells[5].Value.ToString();
-                    MessageBox.Show("Ödeme Başarılı Yeni Bakiye " + Yenibakiye);
-
-
-                }
-                catch (Exception Error)
-                {
-
-                    MessageBox.Show(Error.Message);
-
-                }
-
-
-
-            }
-            uyeGetir();
-            key = 0;
-            borcliste();
+                MessageBox.Show("Üyeyi Seçiniz");
         }
 
         private void btara_Click(object sender, EventArgs e)
@@ -283,6 +287,13 @@ namespace proje
             güncelle.Show();
             this.Hide();
 
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            LogGetir logetir = new LogGetir(username.Text);
+            logetir.Show();
+            this.Hide();
         }
     }
 }

@@ -52,8 +52,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.Geri = new System.Windows.Forms.Button();
             this.X = new System.Windows.Forms.Label();
-            this.CafeBakiye = new System.Windows.Forms.Label();
-            this.textbxCafe = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.username = new System.Windows.Forms.TextBox();
@@ -71,7 +69,6 @@
             this.picbxYeni.Size = new System.Drawing.Size(1009, 395);
             this.picbxYeni.TabIndex = 13;
             this.picbxYeni.TabStop = false;
-            this.picbxYeni.Click += new System.EventHandler(this.picbxYeni_Click);
             // 
             // radiobtBronze
             // 
@@ -86,7 +83,6 @@
             this.radiobtBronze.TabStop = true;
             this.radiobtBronze.Text = "Bronze";
             this.radiobtBronze.UseVisualStyleBackColor = false;
-            this.radiobtBronze.CheckedChanged += new System.EventHandler(this.radiobtBronze_CheckedChanged);
             // 
             // radiobtGold
             // 
@@ -101,7 +97,6 @@
             this.radiobtGold.TabStop = true;
             this.radiobtGold.Text = "Gold";
             this.radiobtGold.UseVisualStyleBackColor = false;
-            this.radiobtGold.CheckedChanged += new System.EventHandler(this.radiobtGold_CheckedChanged);
             // 
             // radiobtPlat
             // 
@@ -116,7 +111,6 @@
             this.radiobtPlat.TabStop = true;
             this.radiobtPlat.Text = "Platinum";
             this.radiobtPlat.UseVisualStyleBackColor = false;
-            this.radiobtPlat.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // labelPaket
             // 
@@ -127,7 +121,6 @@
             this.labelPaket.Size = new System.Drawing.Size(99, 16);
             this.labelPaket.TabIndex = 10;
             this.labelPaket.Text = "Üyelik Paketi";
-            this.labelPaket.Click += new System.EventHandler(this.label1_Click);
             // 
             // button7
             // 
@@ -153,7 +146,6 @@
             this.labelAd.Size = new System.Drawing.Size(66, 20);
             this.labelAd.TabIndex = 21;
             this.labelAd.Text = "Ad Soyad";
-            this.labelAd.Click += new System.EventHandler(this.label2_Click);
             // 
             // textbxAd
             // 
@@ -225,7 +217,6 @@
             this.labelPeriyot.Size = new System.Drawing.Size(150, 20);
             this.labelPeriyot.TabIndex = 30;
             this.labelPeriyot.Text = " Üyelik Periyodu (Gün)";
-            this.labelPeriyot.Click += new System.EventHandler(this.labelPeriyot_Click);
             // 
             // comboxCins
             // 
@@ -233,8 +224,8 @@
             this.comboxCins.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.comboxCins.FormattingEnabled = true;
             this.comboxCins.Items.AddRange(new object[] {
-            "Erkek",
-            "Kadın"});
+            "ERKEK",
+            "KADIN"});
             this.comboxCins.Location = new System.Drawing.Point(553, 159);
             this.comboxCins.Name = "comboxCins";
             this.comboxCins.Size = new System.Drawing.Size(118, 28);
@@ -251,7 +242,6 @@
             this.labelAcıklama.Text = "Bütün üyeler salonun tüm imkanlarından faydalanabilmekle beraber;\r\nBronze Üyeler " +
     "08:00-12:00\r\nGold Üyeler 08:00-16:00\r\nPlatinum Üyeler 08:00-22:00\r\nZaman aralığı" +
     "nda kullanabileceklerdir.";
-            this.labelAcıklama.Click += new System.EventHandler(this.label7_Click);
             // 
             // comboxPeriyot
             // 
@@ -268,7 +258,6 @@
             this.comboxPeriyot.Name = "comboxPeriyot";
             this.comboxPeriyot.Size = new System.Drawing.Size(118, 28);
             this.comboxPeriyot.TabIndex = 27;
-            this.comboxPeriyot.SelectedIndexChanged += new System.EventHandler(this.comboxPeriyot_SelectedIndexChanged);
             // 
             // listbxBrans
             // 
@@ -287,7 +276,6 @@
             this.listbxBrans.Name = "listbxBrans";
             this.listbxBrans.Size = new System.Drawing.Size(116, 154);
             this.listbxBrans.TabIndex = 28;
-            this.listbxBrans.SelectedIndexChanged += new System.EventHandler(this.listbxBrans_SelectedIndexChanged);
             // 
             // labelBrans
             // 
@@ -350,29 +338,9 @@
             this.X.Text = "X";
             this.X.Click += new System.EventHandler(this.X_Click);
             // 
-            // CafeBakiye
-            // 
-            this.CafeBakiye.AutoSize = true;
-            this.CafeBakiye.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.CafeBakiye.ForeColor = System.Drawing.Color.Black;
-            this.CafeBakiye.Location = new System.Drawing.Point(689, 204);
-            this.CafeBakiye.Name = "CafeBakiye";
-            this.CafeBakiye.Size = new System.Drawing.Size(98, 20);
-            this.CafeBakiye.TabIndex = 43;
-            this.CafeBakiye.Text = "Cafe Bakiyesi";
-            // 
-            // textbxCafe
-            // 
-            this.textbxCafe.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textbxCafe.Location = new System.Drawing.Point(693, 227);
-            this.textbxCafe.Name = "textbxCafe";
-            this.textbxCafe.Size = new System.Drawing.Size(118, 27);
-            this.textbxCafe.TabIndex = 32;
-            this.textbxCafe.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textbxCafe_KeyPress);
-            // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(672, 283);
+            this.dateTimePicker1.Location = new System.Drawing.Point(672, 229);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(160, 20);
             this.dateTimePicker1.TabIndex = 44;
@@ -382,7 +350,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(668, 260);
+            this.label1.Location = new System.Drawing.Point(668, 208);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(156, 20);
             this.label1.TabIndex = 45;
@@ -417,8 +385,6 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.CafeBakiye);
-            this.Controls.Add(this.textbxCafe);
             this.Controls.Add(this.X);
             this.Controls.Add(this.Geri);
             this.Controls.Add(this.button2);
@@ -446,7 +412,6 @@
             this.Name = "ÜyeEkle";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ÜyeEkle";
-            this.Load += new System.EventHandler(this.ÜyeEkle_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picbxYeni)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -477,8 +442,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button Geri;
         private System.Windows.Forms.Label X;
-        private System.Windows.Forms.Label CafeBakiye;
-        private System.Windows.Forms.TextBox textbxCafe;
         private System.Windows.Forms.ComboBox comboxPeriyot;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label1;

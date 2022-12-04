@@ -69,101 +69,146 @@ namespace proje
 
         private void btGunc_Click(object sender, EventArgs e)
         {
-           int key = Convert.ToInt32(UYEDGV.SelectedRows[0].Cells[0].Value.ToString());
-            string UyelikPaketi = "";
-            bool uyelikcheck = false;
-            int uyelikfiyat=0;
-            if (radiobtPlat.Checked == true)
+            if (UYEDGV.SelectedRows[0].Cells[0].Value != null)
             {
-                UyelikPaketi = radiobtPlat.Text;
-                uyelikcheck = true;
-                uyelikfiyat = 1000;
-
-            }
-
-            else if (radiobtGold.Checked == true)
-            {
-                UyelikPaketi = radiobtGold.Text;
-                uyelikcheck = true;
-                uyelikfiyat = 500;
-            }
-            else if (radiobtBronze.Checked == true)
-            {
-                UyelikPaketi = radiobtBronze.Text;
-                uyelikcheck = !true;
-                uyelikfiyat = 250;
-            }
-
-            if (key == 0 || comboxPeriyot.Text == "" || uyelikcheck == false )
-            {
-                MessageBox.Show("Eksik bilgi/üyelik yenileyecek üyeyi seçiniz");
-
-
-
-            }
-
-            else
-            {
-                try
+                int key = Convert.ToInt32(UYEDGV.SelectedRows[0].Cells[0].Value.ToString());
+                string UyelikPaketi = "";
+                bool uyelikcheck = false;
+                int uyelikfiyat = 0;
+                if (radiobtPlat.Checked == true)
                 {
-                    int tutar;
-                    int periyotAy = Int32.Parse(comboxPeriyot.Text) / 30;
-                    int odenenmiktar = 0;
-                    tutar = periyotAy*uyelikfiyat;
-                    DateTime baslangictarihi = DateTime.Now;
-                    DateTime bitistarihi = DateTime.Now.AddDays(Int32.Parse(comboxPeriyot.Text));
-                    string strbaslangictarihi=baslangictarihi.ToString("dd.MM.yyyy");
-                    string strbitistarihi = bitistarihi.ToString("dd.MM.yyyy"); 
+                    UyelikPaketi = radiobtPlat.Text;
+                    uyelikcheck = true;
+                    uyelikfiyat = 1000;
+
+                }
+
+                else if (radiobtGold.Checked == true)
+                {
+                    UyelikPaketi = radiobtGold.Text;
+                    uyelikcheck = true;
+                    uyelikfiyat = 500;
+                }
+                else if (radiobtBronze.Checked == true)
+                {
+                    UyelikPaketi = radiobtBronze.Text;
+                    uyelikcheck = true;
+                    uyelikfiyat = 250;
+                }
+                bool tarihkontrol = false;
+                string tarihsorgu = "select * from UyeTbl where UyeId=" + key + "; ";
+                using (SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\YUSUF\DOCUMENTS\DATABASESALON.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
+                using (SqlCommand command = new SqlCommand(tarihsorgu, baglanti))
+                {
                     baglanti.Open();
-                    MessageBox.Show("Üyelik yenilendi. Tutar="+tutar);
-                    string query = "update UyeTbl set UyePeriyot='" + comboxPeriyot.SelectedItem + "' ,UyelikPaketi='" + UyelikPaketi + "',odenenmiktar='" + odenenmiktar + "',BaslangicTarihi='" + strbaslangictarihi + "',BitisTarihi='" + strbitistarihi + "' where UyeId=" + key + ";";
-                    string okumaquery = "select * from UyeTbl where UyeId=" + key + ";";
-                   
-                    using (SqlCommand command = new SqlCommand(okumaquery, baglanti))
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
+
+                        while (reader.Read())
                         {
-                            
-                            while (reader.Read())
+
+                            DateTime kontrol = DateTime.Now;
+                            string BitisTarihis = (reader["BitisTarihi"].ToString());
+                            DateTime BitisTarihi = Convert.ToDateTime(BitisTarihis);
+                            int result = DateTime.Compare(BitisTarihi, kontrol);
+                            if (result < 0 || result == 0)
                             {
-
-
-
-
-                                string log = (reader["log"].ToString());
-
-                                log +=baslangictarihi.ToString() + " " + username.Text + " üyelik yenile," ;
-
-                                SqlConnection baglanti2 = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\YUSUF\DOCUMENTS\DATABASESALON.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-                                string logson = "update UyeTbl set log='" + log + "' where UyeId=" + key + ";";
-                                baglanti2.Open();
-                                SqlCommand logyaz = new SqlCommand(logson, baglanti2);
-                                logyaz.ExecuteNonQuery();
-                                baglanti2.Close();
+                                tarihkontrol = true;
                             }
 
+                            else
+                            {
+                                tarihkontrol = false;
+
+
+                            }
                         }
-
-                        SqlCommand komut = new SqlCommand(query, baglanti);
-
-
-                        komut.ExecuteNonQuery();
-                        
-                        baglanti.Close();
 
                     }
                 }
-                catch (Exception Error)
-                {
 
-                    MessageBox.Show(Error.Message);
+                if (key == 0 || comboxPeriyot.Text == "" || uyelikcheck == false || tarihkontrol == false)
+                {
+                    if (key == 0)
+                        MessageBox.Show("Üyelik yenileyecek üyeyi seçiniz");
+                    else if (comboxPeriyot.Text == "")
+                        MessageBox.Show("Üyelik Periyodunu girin");
+                    else if (uyelikcheck == false)
+                        MessageBox.Show("Üyelik Paketi Seçin");
+                    else if (tarihkontrol == false)
+                        MessageBox.Show("Üyelik tarihi bitiminden önce üyelik yenileyemezsiniz");
+
+
+
 
                 }
 
+                else
+                {
+                    try
+                    {
+
+                        int tutar;
+                        int periyotAy = Int32.Parse(comboxPeriyot.Text) / 30;
+                        int odenenmiktar = -(uyelikfiyat * (Convert.ToInt32(comboxPeriyot.Text) / 30));
+                        tutar = periyotAy * uyelikfiyat;
+                        DateTime baslangictarihi = DateTime.Now;
+                        DateTime bitistarihi = DateTime.Now.AddDays(Int32.Parse(comboxPeriyot.Text));
+                        string strbaslangictarihi = baslangictarihi.ToString("dd.MM.yyyy");
+                        string strbitistarihi = bitistarihi.ToString("dd.MM.yyyy");
+                        baglanti.Open();
+                        MessageBox.Show("Üyelik yenilendi. Tutar=" + tutar);
+                        string query = "update UyeTbl set UyePeriyot='" + comboxPeriyot.SelectedItem + "' ,UyelikPaketi='" + UyelikPaketi + "',paketborcu='" + odenenmiktar + "',BaslangicTarihi='" + strbaslangictarihi + "',BitisTarihi='" + strbitistarihi + "' where UyeId=" + key + ";";
+                        string okumaquery = "select * from UyeTbl where UyeId=" + key + ";";
+
+                        using (SqlCommand command = new SqlCommand(okumaquery, baglanti))
+                        {
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+
+                                while (reader.Read())
+                                {
 
 
+
+
+                                    string log = (reader["log"].ToString());
+
+                                    log += baslangictarihi.ToString() + " " + username.Text + " üyelik yenile,";
+
+                                    SqlConnection baglanti2 = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\YUSUF\DOCUMENTS\DATABASESALON.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                                    string logson = "update UyeTbl set log='" + log + "' where UyeId=" + key + ";";
+                                    baglanti2.Open();
+                                    SqlCommand logyaz = new SqlCommand(logson, baglanti2);
+                                    logyaz.ExecuteNonQuery();
+                                    baglanti2.Close();
+                                }
+
+                            }
+
+                            SqlCommand komut = new SqlCommand(query, baglanti);
+
+
+                            komut.ExecuteNonQuery();
+
+                            baglanti.Close();
+
+                        }
+                    }
+                    catch (Exception Error)
+                    {
+
+                        MessageBox.Show(Error.Message);
+
+                    }
+
+
+
+                }
+                uyeGetir();
             }
-            uyeGetir();
+            else
+                MessageBox.Show("Üyeyi Seçin");
         }
 
         private void X_Click(object sender, EventArgs e)
