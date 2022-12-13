@@ -117,7 +117,7 @@ namespace proje
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (UYEDGV.SelectedRows[0].Cells[0].Value != null)
+            if(UYEDGV.SelectedRows[0].Cells[0].Value != null)
             {
                 textbxAd.Text = "";
                 textbxTel.Text = "";
@@ -181,15 +181,17 @@ namespace proje
 
                     }
                 }
-                else
-                    MessageBox.Show("Seçilecek üyeye tıklayınız");
-
+                
+                
+               
 
 
             }
+
             else
-                MessageBox.Show("Üyeyi Seçin");
-       }
+                MessageBox.Show("Seçilecek üyeye tıklayınız");
+
+        }
 
 
         private void btReset_Click(object sender, EventArgs e)

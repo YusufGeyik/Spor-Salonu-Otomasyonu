@@ -72,7 +72,7 @@ namespace proje
             if (UYEDGV.SelectedRows[0].Cells[0].Value != null)
             {
                 int key = Convert.ToInt32(UYEDGV.SelectedRows[0].Cells[0].Value.ToString());
-                int eskiborc = Convert.ToInt32(UYEDGV.SelectedRows[0].Cells[0].Value.ToString());
+                int eskiborc = Convert.ToInt32(UYEDGV.SelectedRows[0].Cells[12].Value.ToString());     
                 string UyelikPaketi = "";
                 bool uyelikcheck = false;
                 int uyelikfiyat = 0;
@@ -161,7 +161,7 @@ namespace proje
                         string strbitistarihi = bitistarihi.ToString("dd.MM.yyyy");
                         baglanti.Open();
                         MessageBox.Show("Üyelik yenilendi. Tutar=" + tutar);
-                        string query = "update UyeTbl set UyePeriyot='" + comboxPeriyot.SelectedItem + "' ,UyelikPaketi='" + UyelikPaketi + "',paketborcu='" + yenitutar + "',BaslangicTarihi='" + strbaslangictarihi + "',BitisTarihi='" + strbitistarihi + "' where UyeId=" + key + ";";
+                        string query = "update UyeTbl set UyePeriyot='" + comboxPeriyot.SelectedItem + "' ,UyelikPaketi='" + UyelikPaketi + "',paketborcu='" + yeniborc + "',BaslangicTarihi='" + strbaslangictarihi + "',BitisTarihi='" + strbitistarihi + "' where UyeId=" + key + ";";
                         string okumaquery = "select * from UyeTbl where UyeId=" + key + ";";
 
                         using (SqlCommand command = new SqlCommand(okumaquery, baglanti))
