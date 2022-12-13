@@ -198,8 +198,10 @@ namespace proje
 
         }
 
+        private void btara_Click(object sender, EventArgs e)
+        {
 
-
+        }
     }
 }
 

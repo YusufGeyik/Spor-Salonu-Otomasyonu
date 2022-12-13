@@ -177,7 +177,7 @@ namespace proje
 
                                     string log = (reader["log"].ToString());
 
-                                    log += DateTime.Now.ToString() +"Başlangıç Tarihi= "+ baslangictarihi.ToString() + " " + username.Text + " üyelik yenileme , ücret=" +yenitutar;
+                                    log += DateTime.Now.ToString() +" Başlangıç Tarihi= "+ baslangictarihi.ToString() + " " + username.Text + " üyelik yenileme , ücret=" +yenitutar;
 
                                     SqlConnection baglanti2 = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\YUSUF\DOCUMENTS\DATABASESALON.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
                                     string logson = "update UyeTbl set log='" + log + "' where UyeId=" + key + ";";

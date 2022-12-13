@@ -113,7 +113,7 @@ namespace proje
                         {
                             string ad = (reader["UyeAdSoyad"].ToString());
                             string ÜyeSon = BitisTarihi.Subtract(DateTime.Now).ToString();
-                            string increment = "Id=" + UyeId + "  " + ad + "  " + uyelikpaketi + "  " +  BitisTarihis;
+                            string increment = "Id=" + UyeId + "  " + ad + "  " + uyelikpaketi + "  " +  BitisTarihis + "\n";
                             Alarm += increment;
                         }
 

@@ -76,6 +76,7 @@
             this.btara.TabIndex = 78;
             this.btara.Text = "Ara";
             this.btara.UseVisualStyleBackColor = false;
+            this.btara.Click += new System.EventHandler(this.btara_Click);
             // 
             // textBox1
             // 
