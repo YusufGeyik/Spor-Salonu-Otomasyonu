@@ -33,7 +33,7 @@ namespace proje
         int yenipaketborcu { get; set; }    
         int odemetutar { get; set; }    
         int keygonder { get; set; }   
-        string paket { get; set; }  
+        
         
 
 

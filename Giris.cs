@@ -36,15 +36,21 @@ namespace proje
 
 
 
-                /* string kullaniciAdi = "admin";
-                AnaSayfa = kullaniciAdi;
-                AnaSayfa anasayfa = new AnaSayfa();
-                anasayfa.Show();
-                this.Hide();
-                */
 
 
             }
+            else if(textboxKadi.Text == "irem" && textboxpw.Text == "irem")
+            {
+                string kullaniciadi = "irem";
+                AnaSayfa anasayfa = new AnaSayfa(kullaniciadi);
+                anasayfa.Show();
+                this.Hide();
+
+
+
+
+            }
+
             else
                 MessageBox.Show("Yanlış kullanıcı adı/şifre");
         }
