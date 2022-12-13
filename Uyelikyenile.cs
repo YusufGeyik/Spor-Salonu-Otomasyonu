@@ -72,6 +72,7 @@ namespace proje
             if (UYEDGV.SelectedRows[0].Cells[0].Value != null)
             {
                 int key = Convert.ToInt32(UYEDGV.SelectedRows[0].Cells[0].Value.ToString());
+                int eskiborc = Convert.ToInt32(UYEDGV.SelectedRows[0].Cells[0].Value.ToString());
                 string UyelikPaketi = "";
                 bool uyelikcheck = false;
                 int uyelikfiyat = 0;
@@ -148,17 +149,19 @@ namespace proje
                     try
                     {
 
-                        int tutar;
+                        
                         int periyotAy = Int32.Parse(comboxPeriyot.Text) / 30;
-                        int odenenmiktar = -(uyelikfiyat * (Convert.ToInt32(comboxPeriyot.Text) / 30));
-                        tutar = periyotAy * uyelikfiyat;
+                        int yenitutar = -(uyelikfiyat * (Convert.ToInt32(comboxPeriyot.Text) / 30));
+                        int yeniborc = yenitutar + eskiborc;
+                        int tutar=Math.Abs(yenitutar);
+                        
                         DateTime baslangictarihi = DateTime.Now;
                         DateTime bitistarihi = DateTime.Now.AddDays(Int32.Parse(comboxPeriyot.Text));
                         string strbaslangictarihi = baslangictarihi.ToString("dd.MM.yyyy");
                         string strbitistarihi = bitistarihi.ToString("dd.MM.yyyy");
                         baglanti.Open();
                         MessageBox.Show("Üyelik yenilendi. Tutar=" + tutar);
-                        string query = "update UyeTbl set UyePeriyot='" + comboxPeriyot.SelectedItem + "' ,UyelikPaketi='" + UyelikPaketi + "',paketborcu='" + odenenmiktar + "',BaslangicTarihi='" + strbaslangictarihi + "',BitisTarihi='" + strbitistarihi + "' where UyeId=" + key + ";";
+                        string query = "update UyeTbl set UyePeriyot='" + comboxPeriyot.SelectedItem + "' ,UyelikPaketi='" + UyelikPaketi + "',paketborcu='" + yenitutar + "',BaslangicTarihi='" + strbaslangictarihi + "',BitisTarihi='" + strbitistarihi + "' where UyeId=" + key + ";";
                         string okumaquery = "select * from UyeTbl where UyeId=" + key + ";";
 
                         using (SqlCommand command = new SqlCommand(okumaquery, baglanti))
@@ -174,7 +177,7 @@ namespace proje
 
                                     string log = (reader["log"].ToString());
 
-                                    log += baslangictarihi.ToString() + " " + username.Text + " üyelik yenile,";
+                                    log += DateTime.Now.ToString() +"Başlangıç Tarihi= "+ baslangictarihi.ToString() + " " + username.Text + " üyelik yenileme , ücret=" +yenitutar;
 
                                     SqlConnection baglanti2 = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\YUSUF\DOCUMENTS\DATABASESALON.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
                                     string logson = "update UyeTbl set log='" + log + "' where UyeId=" + key + ";";
