@@ -149,9 +149,11 @@
             // 
             // alarmbx
             // 
+            this.alarmbx.Enabled = false;
             this.alarmbx.Font = new System.Drawing.Font("Impact", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.alarmbx.Location = new System.Drawing.Point(590, 433);
             this.alarmbx.Name = "alarmbx";
+            this.alarmbx.ReadOnly = true;
             this.alarmbx.Size = new System.Drawing.Size(296, 190);
             this.alarmbx.TabIndex = 68;
             this.alarmbx.Text = "";
@@ -244,9 +246,11 @@
             // 
             // richTextBox1
             // 
+            this.richTextBox1.Enabled = false;
             this.richTextBox1.Font = new System.Drawing.Font("Impact", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.richTextBox1.Location = new System.Drawing.Point(0, 556);
             this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
             this.richTextBox1.Size = new System.Drawing.Size(492, 129);
             this.richTextBox1.TabIndex = 80;
             this.richTextBox1.Text = "";

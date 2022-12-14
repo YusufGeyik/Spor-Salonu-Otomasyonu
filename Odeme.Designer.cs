@@ -84,6 +84,7 @@
             this.textbxTutar.Name = "textbxTutar";
             this.textbxTutar.Size = new System.Drawing.Size(218, 27);
             this.textbxTutar.TabIndex = 74;
+            this.textbxTutar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textbxTutar_KeyPress);
             // 
             // labelTel
             // 
@@ -210,6 +211,7 @@
             this.textbxUyelik.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.textbxUyelik.Location = new System.Drawing.Point(11, 565);
             this.textbxUyelik.Name = "textbxUyelik";
+            this.textbxUyelik.ReadOnly = true;
             this.textbxUyelik.Size = new System.Drawing.Size(156, 27);
             this.textbxUyelik.TabIndex = 87;
             // 
@@ -286,6 +288,7 @@
             this.textbxbakiye.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.textbxbakiye.Location = new System.Drawing.Point(11, 601);
             this.textbxbakiye.Name = "textbxbakiye";
+            this.textbxbakiye.ReadOnly = true;
             this.textbxbakiye.Size = new System.Drawing.Size(156, 27);
             this.textbxbakiye.TabIndex = 95;
             // 

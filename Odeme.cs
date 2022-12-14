@@ -27,7 +27,7 @@ namespace proje
 
         }
         
-        SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\YUSUF\DOCUMENTS\DATABASESALON.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+        SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\YUSUF\DOCUMENTS\GYMOTOMASYONDB.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
         private void Borcgetir()
         {
@@ -118,7 +118,7 @@ namespace proje
                 if (radiobtCafe.Checked)
                 {
 
-                    SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\YUSUF\DOCUMENTS\DATABASESALON.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                    SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\YUSUF\DOCUMENTS\GYMOTOMASYONDB.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
                     baglanti.Open();
                     string okumaquery = "select * from UyeTbl where UyeId=" + key + ";";
                     using (SqlCommand command = new SqlCommand(okumaquery, baglanti))
@@ -140,7 +140,7 @@ namespace proje
 
                                 log = log + "," + tarih + "  " + username.Text + "+" + textbxTutar.Text + " TL Bakiye Ödemesi";
 
-                                SqlConnection baglanti2 = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\YUSUF\DOCUMENTS\DATABASESALON.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                                SqlConnection baglanti2 = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\YUSUF\DOCUMENTS\GYMOTOMASYONDB.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
                                 string logson = "update UyeTbl set logUyeBakiye='" + log + "' ,UyeBakiye='" + yenibakiye + "' where UyeId=" + key + ";";
                                 baglanti2.Open();
                                 SqlCommand logyaz = new SqlCommand(logson, baglanti2);
@@ -161,7 +161,7 @@ namespace proje
                 else if (radiobtUyelik.Checked)
                 {
 
-                    SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\YUSUF\DOCUMENTS\DATABASESALON.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                    SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\YUSUF\DOCUMENTS\GYMOTOMASYONDB.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
                     baglanti.Open();
                     string okumaquery = "select * from UyeTbl where UyeId=" + key + ";";
                     using (SqlCommand command = new SqlCommand(okumaquery, baglanti))
@@ -184,7 +184,7 @@ namespace proje
 
                                     log = log + " , " + tarih + "  " + username.Text + "  " + textbxTutar.Text + " TL Üyelik ücreti ödemesi";
 
-                                    SqlConnection baglanti2 = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\YUSUF\DOCUMENTS\DATABASESALON.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                                    SqlConnection baglanti2 = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\YUSUF\DOCUMENTS\GYMOTOMASYONDB.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
                                     string logson = "update UyeTbl set logUyePaketOdemeler='" + log + "' ,paketborcu='" + yeniborc + "' where UyeId=" + key + ";";
                                     baglanti2.Open();
                                     SqlCommand logyaz = new SqlCommand(logson, baglanti2);
@@ -260,6 +260,14 @@ namespace proje
         private void textbxAd_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
+        }
+
+        private void textbxTutar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
     }

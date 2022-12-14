@@ -19,8 +19,23 @@ namespace proje
             this.username.Text = username;
             uyeGetir();
         }
-        SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\YUSUF\DOCUMENTS\DATABASESALON.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-        private void uyeGetir()
+        SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\YUSUF\DOCUMENTS\GYMOTOMASYONDB.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+
+        private void isimleAra()
+        {
+            baglanti.Open();
+            string query = "select *from UyeTbl where UyeAdSoyad= '" + textBox1.Text + "'";
+            SqlDataAdapter sda = new SqlDataAdapter(query, baglanti);
+            SqlCommandBuilder builder = new SqlCommandBuilder();
+            var ds = new DataSet();
+            sda.Fill(ds);
+            UYEDGV.DataSource = ds.Tables[0];
+
+            baglanti.Close();
+        }
+
+
+            private void uyeGetir()
         {
             baglanti.Open();
             string query = "select *from UyeTbl";
@@ -36,6 +51,7 @@ namespace proje
 
 
         }
+
 
         private void LogGetir_Load(object sender, EventArgs e)
         {
@@ -83,7 +99,7 @@ namespace proje
                     if (radiobtCafe.Checked)
                     {
 
-                        SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\YUSUF\DOCUMENTS\DATABASESALON.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                        SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\YUSUF\DOCUMENTS\GYMOTOMASYONDB.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
                         baglanti.Open();
                         string okumaquery = "select * from UyeTbl where UyeId=" + key + ";";
                         using (SqlCommand command = new SqlCommand(okumaquery, baglanti))
@@ -200,7 +216,10 @@ namespace proje
 
         private void btara_Click(object sender, EventArgs e)
         {
-
+            if (textBox1.Text == "")
+                uyeGetir();
+            else
+                isimleAra();
         }
     }
 }

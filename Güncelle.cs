@@ -21,28 +21,28 @@ namespace proje
             InitializeComponent();
             this.username.Text = username;
         }
-        SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\YUSUF\DOCUMENTS\DATABASESALON.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-       int eskipaketborcu { get; set; }
+        SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\YUSUF\DOCUMENTS\GYMOTOMASYONDB.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+        int eskipaketborcu { get; set; }
         string odenen { get; set; }
-       
-       
+
+
         string yenipaket { get; set; }
         string logodenenlerglobal { get; set; }
         int yeniperiyot { get; set; }
         int yenipktfiyat { get; set; }
-        int yenipaketborcu { get; set; }    
-        int odemetutar { get; set; }    
-        int keygonder { get; set; }   
-        
-        
+        int yenipaketborcu { get; set; }
+        int odemetutar { get; set; }
+        int keygonder { get; set; }
 
 
-         
+
+
+
         private int tutarhesapla(string paket, int periyot)
         {
             int tutar = 0;
             if (paket == "Platinum")
-                tutar = 1000 * (periyot/30);
+                tutar = 1000 * (periyot / 30);
             else if (paket == "Gold")
                 tutar = 500 * (periyot / 30);
             else if (paket == "Bronze")
@@ -52,13 +52,13 @@ namespace proje
         private void isimleAra()
         {
             baglanti.Open();
-            string query = "select *from UyeTbl where UyeAdSoyad= '"+textBox1.Text+"'";
+            string query = "select *from UyeTbl where UyeAdSoyad= '" + textBox1.Text + "'";
             SqlDataAdapter sda = new SqlDataAdapter(query, baglanti);
             SqlCommandBuilder builder = new SqlCommandBuilder();
             var ds = new DataSet();
             sda.Fill(ds);
             UYEDGV.DataSource = ds.Tables[0];
-            
+
             baglanti.Close();
 
 
@@ -82,9 +82,9 @@ namespace proje
 
 
         }
-       
 
-        
+
+
 
 
 
@@ -110,14 +110,14 @@ namespace proje
             anasayfa.Show();
             this.Hide();
 
-            
+
         }
 
 
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(UYEDGV.SelectedRows[0].Cells[0].Value != null)
+            if (UYEDGV.SelectedRows[0].Cells[0].Value != null)
             {
                 textbxAd.Text = "";
                 textbxTel.Text = "";
@@ -181,9 +181,9 @@ namespace proje
 
                     }
                 }
-                
-                
-               
+
+
+
 
 
             }
@@ -242,9 +242,10 @@ namespace proje
                     baglanti.Close();
                     key = 0;
 
-                }catch(Exception Error)
+                }
+                catch (Exception Error)
                 {
-                    
+
                     MessageBox.Show(Error.Message);
 
                 }
@@ -253,12 +254,12 @@ namespace proje
 
             }
             uyeGetir();
-        
+
         }
 
         private void btGunc_Click(object sender, EventArgs e)
         {
-            
+
             string Branslar = "";
             for (int i = 0; i < listbxBrans1.Items.Count; i++)
             {
@@ -270,10 +271,10 @@ namespace proje
                 }
 
             }
-            int uyelikPaketÜcreti = 0; 
+            int uyelikPaketÜcreti = 0;
             string UyelikPaketi = "";
             bool uyelikcheck = false;
-            
+
             if (radiobtPlat.Checked == true)
             {
                 UyelikPaketi = radiobtPlat.Text;
@@ -300,24 +301,24 @@ namespace proje
                 uyelikPaketÜcreti = 250;
                 yenipktfiyat = uyelikPaketÜcreti;
             }
-            if (key == 0 || textbxAd.Text=="" || textbxTel.Text=="" || textbxYas.Text=="" || comboxCins.Text=="" || comboxPeriyot.Text=="" || uyelikcheck==false || Branslar=="")
+            if (key == 0 || textbxAd.Text == "" || textbxTel.Text == "" || textbxYas.Text == "" || comboxCins.Text == "" || comboxPeriyot.Text == "" || uyelikcheck == false || Branslar == "")
             {
                 MessageBox.Show("Eksik bilgi/silinecek üyeyi seçiniz");
 
 
 
             }
-           
+
 
             else
             {
                 try
                 {
                     yeniperiyot = Convert.ToInt32(comboxPeriyot.Text);
-                    
-                    
+
+
                     baglanti.Open();
-                  
+
                     string query = "update UyeTbl set UyeAdSoyad='" + textbxAd.Text + "',UyeTelefonNo='" + textbxTel.Text + "' ,UyeCinsiyet='" + comboxCins.SelectedItem.ToString() + "' ,UyeYas='" + textbxYas.Text + "',UyeBranslar='" + Branslar + "', UyePeriyot='" + comboxPeriyot.SelectedItem + "' ,UyelikPaketi='" + UyelikPaketi + "' where UyeId=" + key + ";";
                     string okumaquery = "select * from UyeTbl where UyeId=" + key + ";";
                     // SqlCommand command = new SqlCommand(okumaquery,baglanti);
@@ -325,14 +326,14 @@ namespace proje
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            
+
                             while (reader.Read())
                             {
 
-                                
-                                DateTime now=DateTime.Now;
 
-                               string log = (reader["log"].ToString());
+                                DateTime now = DateTime.Now;
+
+                                string log = (reader["log"].ToString());
                                 string tarih = reader["BaslangicTarihi"].ToString();
                                 string eskipaket = reader["UyelikPaketi"].ToString();
                                 int eskiperiyot = Convert.ToInt32(reader["UyePeriyot"].ToString());
@@ -340,11 +341,23 @@ namespace proje
                                 eskipaketborcu = paketborcu;
                                 string logodemeler = reader["logUyePaketOdemeler"].ToString();
                                 logodenenlerglobal = logodemeler;
-                                double eskitutar=0;
-                                double günlükücret=0;
+                                double eskitutar = 0;
+                                double günlükücret = 0;
                                 double hakediş;
                                 double total;
                                 double ödenen = 0;
+
+                                if(yenipaket== eskipaket && yeniperiyot== eskiperiyot)
+                                {
+
+
+
+                                }
+
+
+
+                                else { 
+
                                 if (eskipaket == "Platinum")
                                 {
                                     eskitutar = 1000 * (eskiperiyot / 30);
@@ -353,7 +366,7 @@ namespace proje
                                 else if (eskipaket == "Gold")
                                 {
                                     eskitutar = 500 * (eskiperiyot / 30);
-                                    günlükücret=500 / 30;
+                                    günlükücret = 500 / 30;
 
                                 }
                                 else if (eskipaket == "Bronze")
@@ -363,7 +376,10 @@ namespace proje
                                 }
                                 DateTime baslangic = DateTime.Parse(tarih);
                                 TimeSpan days = now - baslangic;
-                                double nrOfDays=days.TotalDays;
+                                    string yenibaslangic = DateTime.Now.ToString("dd,MM,yyyy");
+                                   DateTime yenibitistarihi= DateTime.Now.AddDays(Int32.Parse(comboxPeriyot.Text));
+                                    string stryenibitistarihi = yenibitistarihi.ToString("dd,MM,yyyy");
+                                    double nrOfDays = days.TotalDays;
                                 hakediş = nrOfDays * günlükücret;
                                 double yenitutar = yenipktfiyat * yeniperiyot / 30;
                                 ödenen = eskitutar - Math.Abs(paketborcu);
@@ -373,48 +389,48 @@ namespace proje
                                 {
                                     MessageBox.Show("Yeni Tutar " + (-Yenipaketborcu));
                                     yenipaketborcu = Yenipaketborcu;
-                                    
+
                                     int degisim = Math.Abs(eskipaketborcu) + Yenipaketborcu;
-                                   
-                                    logodenenlerglobal = ","+logodenenlerglobal + now +" "+ username.Text + " Paket ve/veya periyot değişim sebebiyle yansıyan fark  " + Math.Abs(degisim) ;
+
+                                    logodenenlerglobal = "," + logodenenlerglobal + now + " " + username.Text + " Paket ve/veya periyot değişim sebebiyle yansıyan fark  " + Math.Abs(degisim);
 
                                 }
-                                else if(Yenipaketborcu > 0)
+                                else if (Yenipaketborcu > 0)
                                 {
                                     MessageBox.Show("İade Tutarı " + Yenipaketborcu);
-                                    logodenenlerglobal = " , " + logodenenlerglobal + now +" " + username.Text + " Paket ve/veya periyot değişim sebebiyle iade edilen tutar " + Yenipaketborcu;
+                                    logodenenlerglobal = " , " + logodenenlerglobal + now + " " + username.Text + " Paket ve/veya periyot değişim sebebiyle iade edilen tutar " + Yenipaketborcu;
                                     Yenipaketborcu = 0;
                                     yenipaketborcu = Yenipaketborcu;
-                                   
+
 
                                 }
 
 
-                          
 
 
-                                log += now.ToString()+" "+username.Text + " güncelle," ;
 
-                                SqlConnection baglanti2 = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\YUSUF\DOCUMENTS\DATABASESALON.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-                                string logson = "update UyeTbl set log='" + log + "',paketborcu='" + yenipaketborcu + "' ,logUyePaketOdemeler='" + logodenenlerglobal + "' where UyeId=" + key + ";";
+                                log += now.ToString() + " " + username.Text + " güncelle,";
+
+                                SqlConnection baglanti2 = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\YUSUF\DOCUMENTS\GYMOTOMASYONDB.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                                string logson = "update UyeTbl set log='" + log + "',paketborcu='" + yenipaketborcu + "',BaslangicTarihi='" + yenibaslangic + "' ,BitisTarihi='" + stryenibitistarihi + "',logUyePaketOdemeler='" + logodenenlerglobal + "' where UyeId=" + key + ";";
                                 baglanti2.Open();
-                                SqlCommand logyaz= new SqlCommand(logson, baglanti2);
+                                SqlCommand logyaz = new SqlCommand(logson, baglanti2);
                                 logyaz.ExecuteNonQuery();
                                 baglanti2.Close();
                             }
-                            
+
                         }
-                       
+                    }
                         SqlCommand komut = new SqlCommand(query, baglanti);
 
 
                         komut.ExecuteNonQuery();
 
 
-                            odemetutar =tutarhesapla(yenipaket, yeniperiyot) - Convert.ToInt32(odenen);
-                        
-                        
-                            
+                        odemetutar = tutarhesapla(yenipaket, yeniperiyot) - Convert.ToInt32(odenen);
+
+
+
                         MessageBox.Show("Üye Güncellendi");
                         baglanti.Close();
 
@@ -464,17 +480,17 @@ namespace proje
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar==(char)Keys.Space);
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
         }
 
         private void btara_Click(object sender, EventArgs e)
         {
             if (textBox1.Text == "")
                 uyeGetir();
-            else 
-            isimleAra();
+            else
+                isimleAra();
         }
 
-   
+
     }
 }

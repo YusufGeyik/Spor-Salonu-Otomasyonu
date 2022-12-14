@@ -174,6 +174,7 @@
             this.textbxTel.Name = "textbxTel";
             this.textbxTel.Size = new System.Drawing.Size(118, 27);
             this.textbxTel.TabIndex = 24;
+           
             this.textbxTel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textbxTel_KeyPress);
             // 
             // textbxYas
